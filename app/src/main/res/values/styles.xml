@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Table" parent="AppTheme">
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="TableTitle" parent="Table">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

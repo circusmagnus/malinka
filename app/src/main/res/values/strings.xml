@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Malinka</string>
+    <string name="titile_main_activity">Koszalin, Lotników</string>
+    <string name="subtitle_main_activity">Podłączone urzadzenia:</string>
+    <string name="data_table_header">Data</string>
+    <string name="device_table_header">Urządzenie</string>
+    <string name="value">Wartość</string>
+    <string name="status">Status</string>
+</resources>
