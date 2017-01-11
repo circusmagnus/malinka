@@ -11,6 +11,9 @@ import pl.wojtach.malinka.databinding.ActivityMainBinding
 
 class MainActivity : Activity() {
 
+    /*val sensorList = emptyList<Sensor>()
+    val sensorAdapter: SensorAdapter = SensorAdapter(sensorList)*/
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -18,11 +21,10 @@ class MainActivity : Activity() {
         val layoutManager = LinearLayoutManager(this)
         binding.sensorList.setLayoutManager(layoutManager)
 
-        val sensors = SensorRepositoryRetrofit(RetrofitProvider)
+        SensorRepositoryRetrofit(RetrofitProvider)
                 .getInfoFromSensors()
-                .toList()
+                .subscribe { binding.sensorList.adapter = SensorAdapter(it) }
 
-        //val sensorAdapter = SensorAdapter()
     }
 }
 

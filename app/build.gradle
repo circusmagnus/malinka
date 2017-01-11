@@ -45,6 +45,13 @@ dependencies {
 
     //RecyclerView
     compile 'com.android.support:recyclerview-v7:25.1.0'
+
+    //kotlin databinding
+    kapt "com.android.databinding:compiler:$android_plugin_version"
+}
+
+kapt {
+    generateStubs = true
 }
 repositories {
     mavenCentral()
