@@ -18,7 +18,7 @@ object RetrofitProvider {
 
     private fun provideRetrofit(client: OkHttpClient, gson: Gson): Retrofit {
         return Retrofit.Builder()
-                .baseUrl("http://smarthomeproject.mybluemix.net/api")
+                .baseUrl("http://smarthomeproject.mybluemix.net/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(client)

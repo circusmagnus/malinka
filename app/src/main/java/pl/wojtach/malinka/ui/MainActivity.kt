@@ -8,6 +8,8 @@ import pl.wojtach.malinka.R
 import pl.wojtach.malinka.data.RetrofitProvider
 import pl.wojtach.malinka.data.SensorRepositoryRetrofit
 import pl.wojtach.malinka.databinding.ActivityMainBinding
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 class MainActivity : Activity() {
 
@@ -23,6 +25,8 @@ class MainActivity : Activity() {
 
         SensorRepositoryRetrofit(RetrofitProvider)
                 .getInfoFromSensors()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { binding.sensorList.adapter = SensorAdapter(it) }
 
     }

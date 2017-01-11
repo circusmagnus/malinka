@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
  */
 data class Sensor(
         var mac: String,
-        @SerializedName("decription") var name: String,
+        @SerializedName("description") var name: String,
         var type: Int,
         @SerializedName("status") var isActive: Boolean,
         @SerializedName("lastvalue") var lastValue: String,
