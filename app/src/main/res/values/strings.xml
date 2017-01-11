@@ -6,4 +6,6 @@
     <string name="device_table_header">Urządzenie</string>
     <string name="value">Wartość</string>
     <string name="status">Status</string>
+    <string name="sensor_date_descr">ostatni odczyt</string>
+    <string name="sensor_value_descr">wartość</string>
 </resources>
