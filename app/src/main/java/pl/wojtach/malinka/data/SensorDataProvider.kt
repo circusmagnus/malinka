@@ -2,7 +2,6 @@ package pl.wojtach.malinka.data
 
 import pl.wojtach.malinka.logic.Sensor
 import retrofit2.http.GET
-import retrofit2.http.PUT
 import retrofit2.http.Query
 import rx.Observable
 
@@ -14,6 +13,8 @@ interface SensorDataProvider {
     @GET("lastStatus")
     fun getSensors(): Observable<List<Sensor>>
 
-    @PUT("setDeviceStatus")
-    fun setDeviceStatus(@Query("sensor") macAddres: String, @Query("type") type: Int, @Query("status") isActive: Int): Observable<List<Sensor>>
+    @GET("setDeviceStatus")
+    fun setDeviceStatus(@Query("sensor") macAddres: String,
+                        @Query("type") type: Int,
+                        @Query("status") isActive: Int): Observable<Void>
 }

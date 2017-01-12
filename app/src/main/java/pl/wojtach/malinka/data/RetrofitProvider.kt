@@ -39,7 +39,7 @@ object RetrofitProvider {
                 .readTimeout(60, TimeUnit.SECONDS)
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(90, TimeUnit.SECONDS)
-                //.addInterceptor(createLoggingInterceptor())
+                .addInterceptor(createLoggingInterceptor())
                 .build()
     }
 
