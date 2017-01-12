@@ -39,7 +39,8 @@
             android:layout_marginEnd="26dp"
             android:layout_marginRight="26dp"
             android:layout_marginTop="21dp"
-            android:checked="@{sensor_view_model.status}" />
+            android:checked="@{sensor_view_model.status}"
+            android:onClick="@{switch -> sensor_view_model.setNewStatus(switch)}" />
 
         <TextView
             android:id="@+id/date_descr"

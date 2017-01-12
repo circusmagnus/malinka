@@ -7,4 +7,6 @@ import rx.Observable
  */
 interface SensorRepository {
     fun getInfoFromSensors(location: SensorLocation = SensorLocation.KOSZALIN): Observable<List<Sensor>>
+
+    fun setSensorStatus(sensor: Sensor)
 }

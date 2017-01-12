@@ -10,6 +10,11 @@ import rx.Observable
  */
 class SensorRepositoryRetrofit(val sensorDataProvider: RetrofitProvider) : SensorRepository {
 
+    override fun setSensorStatus(sensor: Sensor) {
+        val status = if (sensor.isActive) 1 else 0
+        sensorDataProvider.dataProvider.setDeviceStatus(sensor.mac, sensor.type, status)
+    }
+
     override fun getInfoFromSensors(location: SensorLocation): Observable<List<Sensor>> {
         return sensorDataProvider.dataProvider.getSensors()
     }

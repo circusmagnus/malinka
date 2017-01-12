@@ -1,5 +1,9 @@
 package pl.wojtach.malinka.ui
 
+import android.view.View
+import android.widget.Switch
+import pl.wojtach.malinka.data.RetrofitProvider
+import pl.wojtach.malinka.data.SensorRepositoryRetrofit
 import pl.wojtach.malinka.logic.Sensor
 
 /**
@@ -22,5 +26,11 @@ class SensorViewModel(val sensor: Sensor) {
 
     fun getStatus(): Boolean {
         return sensor.isActive
+    }
+
+    fun setNewStatus(switch: View) {
+
+        sensor.isActive = (switch as? Switch)?.isChecked ?: return
+        SensorRepositoryRetrofit(RetrofitProvider).setSensorStatus(sensor)
     }
 }
