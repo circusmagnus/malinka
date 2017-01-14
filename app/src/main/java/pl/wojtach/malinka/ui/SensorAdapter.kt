@@ -8,7 +8,7 @@ import pl.wojtach.malinka.R
 import pl.wojtach.malinka.databinding.SensorViewholderBinding
 import pl.wojtach.malinka.logic.Sensor
 
-class SensorAdapter(val sensors: List<Sensor>) : RecyclerView.Adapter<SensorAdapter.SensorViewHolder>() {
+class SensorAdapter(val sensors: MutableList<Sensor>) : RecyclerView.Adapter<SensorAdapter.SensorViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): SensorViewHolder {
         val sensorViewHolderBinding =
