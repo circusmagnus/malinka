@@ -35,7 +35,7 @@ class SensorViewModel(val sensor: Sensor) {
     }
 
     fun setNewStatus(view: View) {
-        val switch = view as Switch
+        val switch = if (view is Switch) view else return
         val newSensorStatus = sensor.copy(isActive = switch.isChecked)
         SensorRepositoryRetrofit(RetrofitProvider)
                 .setSensorStatus(newSensorStatus)
