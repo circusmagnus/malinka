@@ -15,6 +15,12 @@ class MainActivity : Activity() {
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         viewModel = ActivityMainViewModel(binding)
+        viewModel.onCreate()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.refreshSensorList()
     }
 }
 
