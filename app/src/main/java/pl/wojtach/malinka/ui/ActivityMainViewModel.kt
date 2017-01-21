@@ -21,9 +21,9 @@ class ActivityMainViewModel(val boundView: ActivityMainBinding) : SwipeRefreshLa
 
     fun onCreate() {
         val layoutManager = LinearLayoutManager(boundView.activityMain.context)
-        boundView.sensorList.setLayoutManager(layoutManager)
+        boundView.sensorList.layoutManager = layoutManager
         boundView.sensorList.adapter = SensorAdapter(sensors)
-        boundView.swipeRefreshLayout.setOnRefreshListener(this)
+        //boundView.swipeRefreshLayout.setOnRefreshListener(this)
     }
 
     fun refreshSensorList() {
