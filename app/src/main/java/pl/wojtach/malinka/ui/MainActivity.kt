@@ -3,6 +3,7 @@ package pl.wojtach.malinka.ui
 import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import pl.wojtach.malinka.R
 import pl.wojtach.malinka.databinding.ActivityMainBinding
 
@@ -14,8 +15,10 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        viewModel = ActivityMainViewModel(binding)
-        viewModel.onCreate()
+        val sensorListAdapter = SensorAdapter(mutableListOf())
+        viewModel = ActivityMainViewModel(sensorListAdapter)
+        binding.sensorList.adapter = sensorListAdapter
+        binding.sensorList.layoutManager = LinearLayoutManager(this)
         binding.viewModel = viewModel
     }
 

@@ -15,7 +15,8 @@
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:onRefreshListener="@{viewModel}">
+        app:onRefreshListener="@{viewModel}"
+        app:refreshing="@{viewModel.isRefreshing}">
 
     <LinearLayout
         android:id="@+id/activity_main"
