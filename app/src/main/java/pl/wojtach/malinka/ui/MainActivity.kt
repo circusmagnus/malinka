@@ -16,9 +16,9 @@ class MainActivity : Activity() {
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         val sensorListAdapter = SensorAdapter(mutableListOf())
-        viewModel = ActivityMainViewModel(sensorListAdapter)
         binding.sensorList.adapter = sensorListAdapter
         binding.sensorList.layoutManager = LinearLayoutManager(this)
+        viewModel = ActivityMainViewModel(sensorListAdapter)
         binding.viewModel = viewModel
     }
 

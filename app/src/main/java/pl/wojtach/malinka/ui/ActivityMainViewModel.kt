@@ -14,13 +14,7 @@ import rx.schedulers.Schedulers
 class ActivityMainViewModel(val sensorListAdapter: SensorAdapter) : SwipeRefreshLayout.OnRefreshListener {
 
     val TAG = ActivityMainViewModel::class.java.simpleName
-
-
     var isRefreshing = ObservableBoolean(false)
-
-    init {
-        refreshSensorList()
-    }
 
     fun refreshSensorList() {
         isRefreshing.set(true)
