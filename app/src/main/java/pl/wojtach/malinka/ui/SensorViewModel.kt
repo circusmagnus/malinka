@@ -1,9 +1,7 @@
 package pl.wojtach.malinka.ui
 
-import android.graphics.Color
+import android.databinding.ObservableBoolean
 import android.util.Log
-import android.view.View
-import android.widget.Switch
 import pl.wojtach.malinka.data.RetrofitProvider
 import pl.wojtach.malinka.data.SensorRepositoryRetrofit
 import pl.wojtach.malinka.logic.Sensor
@@ -17,26 +15,15 @@ import rx.schedulers.Schedulers
 class SensorViewModel(val sensor: Sensor) {
 
     val TAG = SensorViewModel::class.java.simpleName
+    val isActiveObservable = ObservableBoolean(sensor.isActive)
+    val errorOccuredObservable = ObservableBoolean(false)
 
-    fun getName(): String {
-        return sensor.name
-    }
+    fun getName() = sensor.name
+    fun getValue() = sensor.lastValue
+    fun getDate() = sensor.lastDate
 
-    fun getValue(): String {
-        return sensor.lastValue
-    }
-
-    fun getDate(): String {
-        return sensor.lastDate
-    }
-
-    fun getStatus(): Boolean {
-        return sensor.isActive
-    }
-
-    fun setNewStatus(view: View) {
-        val switch = if (view is Switch) view else return
-        val newSensorStatus = sensor.copy(isActive = switch.isChecked)
+    fun setNewStatus() {
+        val newSensorStatus = sensor.copy(isActive = isActiveObservable.get())
         SensorRepositoryRetrofit(RetrofitProvider)
                 .setSensorStatus(newSensorStatus)
                 .subscribeOn(Schedulers.io())
@@ -44,13 +31,13 @@ class SensorViewModel(val sensor: Sensor) {
                 .subscribe(
                         { success ->
                             sensor.apply { isActive = newSensorStatus.isActive }
-                            switch.setChecked(sensor.isActive)
+                            isActiveObservable.set(sensor.isActive)
+                            errorOccuredObservable.set(false)
                         },
-
                         { error ->
-                            switch.setBackgroundColor(Color.RED)
-                            switch.setChecked(sensor.isActive)
                             Log.d(TAG, error.message)
+                            isActiveObservable.set(sensor.isActive)
+                            errorOccuredObservable.set(true)
                         })
     }
 }

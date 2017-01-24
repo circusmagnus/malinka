@@ -15,6 +15,7 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
         val sensorListAdapter = SensorAdapter(mutableListOf())
         binding.sensorList.adapter = sensorListAdapter
         binding.sensorList.layoutManager = LinearLayoutManager(this)

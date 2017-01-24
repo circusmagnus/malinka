@@ -8,4 +8,5 @@
     <string name="status">Status</string>
     <string name="sensor_date_descr">ostatni odczyt</string>
     <string name="sensor_value_descr">wartość</string>
+    <string name="error_sensor_view_holder">Błąd. Może nie ma internetu?</string>
 </resources>
