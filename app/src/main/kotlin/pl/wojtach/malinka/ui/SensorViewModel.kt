@@ -5,6 +5,7 @@ import android.util.Log
 import pl.wojtach.malinka.data.RetrofitProvider
 import pl.wojtach.malinka.data.SensorRepositoryRetrofit
 import pl.wojtach.malinka.logic.Sensor
+import pl.wojtach.malinka.logic.SensorRepository
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
@@ -12,8 +13,10 @@ import rx.schedulers.Schedulers
  * Created by Lukasz on 07.01.2017.
  */
 
-class SensorViewModel(val sensor: Sensor) {
-
+class SensorViewModel(
+        val sensor: Sensor,
+        val repository: SensorRepository = SensorRepositoryRetrofit(RetrofitProvider)
+) {
     val TAG = SensorViewModel::class.java.simpleName
     val isActiveObservable = ObservableBoolean(sensor.isActive)
     val errorOccuredObservable = ObservableBoolean(false)
@@ -24,7 +27,7 @@ class SensorViewModel(val sensor: Sensor) {
 
     fun setNewStatus() {
         val newSensorStatus = sensor.copy(isActive = isActiveObservable.get())
-        SensorRepositoryRetrofit(RetrofitProvider)
+        repository
                 .setSensorStatus(newSensorStatus)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

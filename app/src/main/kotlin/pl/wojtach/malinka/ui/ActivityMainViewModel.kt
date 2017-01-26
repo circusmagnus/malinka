@@ -5,20 +5,24 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.util.Log
 import pl.wojtach.malinka.data.RetrofitProvider
 import pl.wojtach.malinka.data.SensorRepositoryRetrofit
+import pl.wojtach.malinka.logic.SensorRepository
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
 /**
  * Created by Lukasz on 14.01.2017.
  */
-class ActivityMainViewModel(val sensorListAdapter: SensorAdapter) : SwipeRefreshLayout.OnRefreshListener {
+class ActivityMainViewModel(
+        val sensorListAdapter: SensorAdapter,
+        val repository: SensorRepository = SensorRepositoryRetrofit(RetrofitProvider)
+) : SwipeRefreshLayout.OnRefreshListener {
 
     val TAG = ActivityMainViewModel::class.java.simpleName
     var isRefreshing = ObservableBoolean(false)
 
     fun refreshSensorList() {
         isRefreshing.set(true)
-        SensorRepositoryRetrofit(RetrofitProvider)
+        repository
                 .getInfoFromSensors()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
