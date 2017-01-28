@@ -5,6 +5,8 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import pl.wojtach.malinka.R
+import pl.wojtach.malinka.data.RetrofitProvider
+import pl.wojtach.malinka.data.SensorRepositoryRetrofit
 import pl.wojtach.malinka.databinding.ActivityMainBinding
 
 class MainActivity : Activity() {
@@ -15,11 +17,9 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-
-        val sensorListAdapter = SensorAdapter(mutableListOf())
-        binding.sensorList.adapter = sensorListAdapter
-        binding.sensorList.layoutManager = LinearLayoutManager(this)
-        viewModel = ActivityMainViewModel(sensorListAdapter)
+        viewModel = ActivityMainViewModel(listAdapter = SensorAdapter(mutableListOf()),
+                repository = SensorRepositoryRetrofit(RetrofitProvider),
+                layoutManager = LinearLayoutManager(this))
         binding.viewModel = viewModel
     }
 

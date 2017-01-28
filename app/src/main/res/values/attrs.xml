@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="SwipeRefreshLayout">
-        <attr name="onRefreshListener" format="reference" />
+        <attr name="OnRefreshListener" format="reference" />
         <attr name="refreshing" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="RecyclerView">
+        <attr name="Adapter" format="reference" />
+        <attr name="LayoutManager" format="reference" />
     </declare-styleable>
 </resources>
