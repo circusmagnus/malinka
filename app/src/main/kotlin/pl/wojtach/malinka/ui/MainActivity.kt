@@ -11,13 +11,13 @@ import pl.wojtach.malinka.databinding.ActivityMainBinding
 
 class MainActivity : Activity() {
 
-    lateinit var viewModel: ActivityMainViewModel
+    lateinit var viewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        viewModel = ActivityMainViewModel(listAdapter = SensorAdapter(mutableListOf()),
+        viewModel = MainActivityViewModel(listAdapter = SensorAdapter(mutableListOf()),
                 repository = SensorRepositoryRetrofit(RetrofitProvider),
                 layoutManager = LinearLayoutManager(this))
         binding.viewModel = viewModel

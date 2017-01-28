@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="pl.wojtach.malinka.ui.ActivityMainViewModel" />
+            type="pl.wojtach.malinka.ui.MainActivityViewModel" />
     </data>
 
     <android.support.v4.widget.SwipeRefreshLayout

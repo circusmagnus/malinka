@@ -13,13 +13,13 @@ import rx.schedulers.Schedulers
 /**
  * Created by Lukasz on 14.01.2017.
  */
-class ActivityMainViewModel(
+class MainActivityViewModel(
         val listAdapter: SensorAdapter,
         val repository: SensorRepository = SensorRepositoryRetrofit(RetrofitProvider),
         val layoutManager: RecyclerView.LayoutManager
 ) : SwipeRefreshLayout.OnRefreshListener {
 
-    val TAG = ActivityMainViewModel::class.java.simpleName
+    val TAG = MainActivityViewModel::class.java.simpleName
     var isRefreshing = ObservableBoolean(false)
 
     fun refreshSensorList() {
