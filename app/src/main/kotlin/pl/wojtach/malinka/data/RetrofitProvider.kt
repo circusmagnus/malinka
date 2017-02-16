@@ -44,8 +44,7 @@ object RetrofitProvider {
     }
 
     private fun createLoggingInterceptor(): HttpLoggingInterceptor {
-        val logger = HttpLoggingInterceptor()
-        logger.setLevel(HttpLoggingInterceptor.Level.BODY)
-        return logger
+        return HttpLoggingInterceptor()
+                .setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 }
