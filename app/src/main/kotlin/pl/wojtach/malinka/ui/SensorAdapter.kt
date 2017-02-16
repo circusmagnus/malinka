@@ -11,11 +11,14 @@ import pl.wojtach.malinka.logic.Sensor
 class SensorAdapter(val sensors: MutableList<Sensor>) : RecyclerView.Adapter<SensorAdapter.SensorViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): SensorViewHolder {
-
-        val sensorViewHolderBinding =
+        return SensorViewHolder(
                 DataBindingUtil.inflate<SensorViewholderBinding>(
-                        LayoutInflater.from(parent?.context), R.layout.sensor_viewholder, parent, false)
-        return SensorViewHolder(sensorViewHolderBinding)
+                        LayoutInflater.from(parent?.context),
+                        R.layout.sensor_viewholder,
+                        parent,
+                        false
+                )
+        )
     }
 
     override fun getItemCount(): Int {
