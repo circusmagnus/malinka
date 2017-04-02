@@ -7,16 +7,20 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="pl.wojtach.malinka.ui.MainActivityViewModel" />
+            name="main_model"
+            type="pl.wojtach.malinka.ui.main_screen.MainActivityViewModel" />
+
+        <variable
+            name="sensor_list_model"
+            type="pl.wojtach.malinka.ui.main_screen.SensorListViewModel" />
     </data>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:onRefreshListener="@{viewModel}"
-        app:refreshing="@{viewModel.isRefreshing}">
+        app:onRefreshListener="@{main_model}"
+        app:refreshing="@{main_model.isRefreshing}">
 
     <LinearLayout
         android:id="@+id/activity_main"
@@ -27,7 +31,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="pl.wojtach.malinka.ui.MainActivity">
+        tools:context="pl.wojtach.malinka.ui.main_screen.MainActivity">
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,8 +53,8 @@
             android:id="@+id/sensor_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:LayoutManager="@{viewModel.layoutManager}"
-            app:adapter="@{viewModel.listAdapter}" />
+            app:LayoutManager="@{sensor_list_model.layoutManager}"
+            app:adapter="@{sensor_list_model.adapter}" />
 
     </LinearLayout>
 
