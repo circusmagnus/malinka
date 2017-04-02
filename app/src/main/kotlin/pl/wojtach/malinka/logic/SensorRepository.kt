@@ -1,6 +1,6 @@
 package pl.wojtach.malinka.logic
 
-import rx.Observable
+import io.reactivex.Observable
 
 /**
  * Created by Lukasz on 08.01.2017.

@@ -3,7 +3,7 @@ package pl.wojtach.malinka.data
 import pl.wojtach.malinka.logic.Sensor
 import pl.wojtach.malinka.logic.SensorLocation
 import pl.wojtach.malinka.logic.SensorRepository
-import rx.Observable
+import io.reactivex.Observable
 
 /**
  * Created by Lukasz on 08.01.2017.

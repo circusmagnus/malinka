@@ -6,8 +6,8 @@ import pl.wojtach.malinka.data.RetrofitProvider
 import pl.wojtach.malinka.data.SensorRepositoryRetrofit
 import pl.wojtach.malinka.logic.Sensor
 import pl.wojtach.malinka.logic.SensorRepository
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by Lukasz on 07.01.2017.

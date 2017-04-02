@@ -40,24 +40,24 @@ dependencies {
     //compile 'com.google.code.gson:gson:2.6.1'
 
     //Retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
-    //RxAndroid
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.1.6'
+    //Reactive stuff
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.8'
 
     //RecyclerView
-    compile 'com.android.support:recyclerview-v7:25.2.0'
+    compile "com.android.support:recyclerview-v7:$supportLibrariesVersion"
 
     //Support to avoid duplication
-    compile 'com.android.support:support-v4:25.2.0'
+    compile "com.android.support:support-v4:$supportLibrariesVersion"
 
     //kotlin databinding
-    kapt "com.android.databinding:compiler:2.3.0"
+    kapt "com.android.databinding:compiler:$gradle_plugin_version"
 }
 repositories {
     mavenCentral()
