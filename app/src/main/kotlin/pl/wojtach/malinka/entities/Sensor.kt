@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.logic
+package pl.wojtach.malinka.entities
 
 import com.google.gson.annotations.SerializedName
 

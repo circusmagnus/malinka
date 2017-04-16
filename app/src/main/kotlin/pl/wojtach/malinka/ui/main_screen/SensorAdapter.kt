@@ -1,12 +1,12 @@
-package pl.wojtach.malinka.ui
+package pl.wojtach.malinka.ui.main_screen
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import pl.wojtach.malinka.R
+import pl.wojtach.malinka.entities.Sensor
 import pl.wojtach.malinka.databinding.SensorViewholderBinding
-import pl.wojtach.malinka.logic.Sensor
 
 class SensorAdapter(val sensors: MutableList<Sensor>) : RecyclerView.Adapter<SensorAdapter.SensorViewHolder>() {
 

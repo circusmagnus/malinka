@@ -5,7 +5,7 @@
         <import type="android.view.View" />
         <variable
             name="sensor_view_model"
-            type="pl.wojtach.malinka.ui.SensorViewModel" />
+            type="pl.wojtach.malinka.ui.main_screen.SensorViewModel" />
     </data>
 
     <RelativeLayout

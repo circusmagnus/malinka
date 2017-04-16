@@ -1,6 +1,6 @@
-package pl.wojtach.malinka.data
+package pl.wojtach.malinka.data.sensors
 
-import pl.wojtach.malinka.logic.Sensor
+import pl.wojtach.malinka.entities.Sensor
 import retrofit2.http.GET
 import retrofit2.http.Query
 import io.reactivex.Observable

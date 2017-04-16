@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="pl.wojtach.malinka.ui.MainActivityViewModel" />
+            type="pl.wojtach.malinka.ui.main_screen.MainActivityViewModel" />
     </data>
 
     <android.support.v4.widget.SwipeRefreshLayout
@@ -27,7 +27,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="pl.wojtach.malinka.ui.MainActivity">
+        tools:context="pl.wojtach.malinka.ui.main_screen.MainActivity">
 
         <TextView
             android:layout_width="wrap_content"

@@ -1,6 +1,8 @@
-package pl.wojtach.malinka.logic
+package pl.wojtach.malinka.data.sensors
 
 import io.reactivex.Observable
+import pl.wojtach.malinka.entities.Sensor
+import pl.wojtach.malinka.entities.SensorLocation
 
 /**
  * Created by Lukasz on 08.01.2017.

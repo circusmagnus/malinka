@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.ui
+package pl.wojtach.malinka.ui.main_screen
 
 import android.app.Activity
 import android.databinding.DataBindingUtil
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import pl.wojtach.malinka.R
 import pl.wojtach.malinka.data.RetrofitProvider
-import pl.wojtach.malinka.data.SensorRepositoryRetrofit
+import pl.wojtach.malinka.data.sensors.SensorRepositoryRetrofit
 import pl.wojtach.malinka.databinding.ActivityMainBinding
 
 class MainActivity : Activity() {
