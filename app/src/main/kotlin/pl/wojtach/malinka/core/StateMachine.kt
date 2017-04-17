@@ -8,13 +8,13 @@ import pl.wojtach.malinka.state.State
 /**
  * Created by lukaszwojtach on 17.04.2017.
  */
-interface StateMachine {
+interface StateMachine<STATE> {
     fun dispatch(action: Action)
-    fun getState(): State
-    fun getObservable(): Observable<State>
+    fun getState(): STATE
+    fun getObservable(): Observable<STATE>
 }
 
-class StateMachineImpl : StateMachine {
+class StateMachineImpl : StateMachine<State> {
 
     var currentState: State = createInitialState()
 
