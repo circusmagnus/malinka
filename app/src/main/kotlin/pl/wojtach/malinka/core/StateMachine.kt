@@ -9,7 +9,7 @@ import pl.wojtach.malinka.state.State
  * Created by lukaszwojtach on 17.04.2017.
  */
 interface StateMachine<STATE> {
-    fun dispatch(action: Action)
+    fun dispatch(action: Action<STATE>)
     fun getState(): STATE
     fun getObservable(): Observable<STATE>
 }
@@ -20,11 +20,11 @@ class StateMachineImpl : StateMachine<State> {
 
     var publisher: Subject<State> = PublishSubject.create()
 
-    override fun dispatch(action: Action) {
+    override fun dispatch(action: Action<State>) {
         publisher.onNext(createNewState(action))
     }
 
-    private fun createNewState(action: Action): State {
+    private fun createNewState(action: Action<State>): State {
         currentState = action.newState(currentState)
         return currentState
     }
