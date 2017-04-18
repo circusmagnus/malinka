@@ -10,7 +10,7 @@ import pl.wojtach.malinka.state.State
  */
 class StateMachineImplTest {
 
-    val testAction = object : Action {
+    val testAction = object : Action<State> {
         override fun newState(oldState: State): State =
                 oldState.createTestCase()
 
@@ -21,7 +21,7 @@ class StateMachineImplTest {
     @Test
     fun after_dispatch_action_can_get_correct_state() {
         //given
-        val stateMachine: StateMachine = StateMachineImpl()
+        val stateMachine: StateMachine<State> = StateMachineImpl(createInitialState())
 
         //when
         stateMachine.dispatch(testAction)
@@ -33,12 +33,12 @@ class StateMachineImplTest {
     @Test
     fun after_dispatching_new_state_does_notify() {
         //given
-        val stateMachine = StateMachineImpl()
+        val stateMachine = StateMachineImpl(createInitialState())
 
         val testObserver = TestObserver.create<State>()
 
         //when
-        stateMachine.publisher.subscribe(testObserver)
+        stateMachine.getPublisher().subscribe(testObserver)
         stateMachine.dispatch(testAction)
 
         //then

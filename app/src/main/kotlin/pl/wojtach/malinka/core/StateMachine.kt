@@ -11,25 +11,25 @@ import pl.wojtach.malinka.state.State
 interface StateMachine<STATE> {
     fun dispatch(action: Action<STATE>)
     fun getState(): STATE
-    fun getObservable(): Observable<STATE>
+    fun getPublisher(): Observable<STATE>
 }
 
-class StateMachineImpl : StateMachine<State> {
+class StateMachineImpl(initialState: State) : StateMachine<State> {
 
-    var currentState: State = createInitialState()
+    private val publisher: Subject<State> = PublishSubject.create()
 
-    var publisher: Subject<State> = PublishSubject.create()
+    private var currentState: State = initialState
+        set(value) {
+            field = value
+            publisher.onNext(field)
+        }
+
 
     override fun dispatch(action: Action<State>) {
-        publisher.onNext(createNewState(action))
-    }
-
-    private fun createNewState(action: Action<State>): State {
         currentState = action.newState(currentState)
-        return currentState
     }
 
     override fun getState(): State = currentState
 
-    override fun getObservable(): Observable<State> = publisher
+    override fun getPublisher(): Observable<State> = publisher
 }
