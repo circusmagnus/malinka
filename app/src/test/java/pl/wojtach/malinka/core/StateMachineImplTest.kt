@@ -11,7 +11,7 @@ import pl.wojtach.malinka.state.State
 class StateMachineImplTest {
 
     val testAction = object : Action<State> {
-        override fun newState(oldState: State): State =
+        override fun transformState(oldState: State): State =
                 oldState.createTestCase()
 
     }

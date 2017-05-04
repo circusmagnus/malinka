@@ -2,6 +2,7 @@ package pl.wojtach.malinka.ui.login_screen
 
 import android.databinding.ObservableField
 import android.view.View
+import pl.wojtach.malinka.core.LoginAction
 import pl.wojtach.malinka.core.StateMachine
 import pl.wojtach.malinka.state.PHASE
 import pl.wojtach.malinka.state.State
@@ -9,7 +10,7 @@ import pl.wojtach.malinka.state.State
 /**
  * Created by lukaszwojtach on 16.04.2017.
  */
-internal class LoginViewModel(stateMachine: StateMachine<State>) {
+internal class LoginViewModel(val stateMachine: StateMachine<State>) {
 
     var isInProgress = ObservableField(View.INVISIBLE)
     var user = ObservableField("")
@@ -20,6 +21,10 @@ internal class LoginViewModel(stateMachine: StateMachine<State>) {
     init {
         render(stateMachine.getState())
         stateMachine.getPublisher().subscribe { render(it) }
+    }
+
+    fun dispatchAction(view: View) {
+        stateMachine.dispatch(LoginAction(user.get(), password.get()))
     }
 
     private fun render(state: State) {

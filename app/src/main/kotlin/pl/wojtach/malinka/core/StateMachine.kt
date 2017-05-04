@@ -31,7 +31,7 @@ class StateMachineImpl(initialState: State) : StateMachine<State> {
 
 
     override fun dispatch(action: Action<State>) {
-        currentState = action.newState(currentState)
+        currentState = action.transformState(currentState)
     }
 
     override fun getState(): State = currentState

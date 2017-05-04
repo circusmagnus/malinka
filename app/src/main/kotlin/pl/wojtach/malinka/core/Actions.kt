@@ -8,10 +8,17 @@ import pl.wojtach.malinka.state.State
  */
 
 interface Action<STATE> {
-    fun newState(oldState: STATE): STATE
+    fun transformState(oldState: STATE): STATE
 }
 
 class InitStateAction : Action<State> {
-    override fun newState(oldState: State): State = createInitialState()
+    override fun transformState(oldState: State): State = createInitialState()
+
+}
+
+class LoginAction(val user: String, val password: String) : Action<State> {
+    override fun transformState(oldState: State): State {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
 }

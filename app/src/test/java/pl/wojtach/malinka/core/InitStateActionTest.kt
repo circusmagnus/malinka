@@ -28,7 +28,7 @@ class InitStateActionTest {
         val oldState = createInitialState().copy(errorState = ErrorState("test error"))
 
         //when
-        val state = InitStateAction().newState(oldState)
+        val state = InitStateAction().transformState(oldState)
 
         //then
         assertEquals(state, expectedState)
