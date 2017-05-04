@@ -5,7 +5,6 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import pl.wojtach.malinka.R
 import pl.wojtach.malinka.core.StateMachine
-import pl.wojtach.malinka.core.StateMachineImpl
 import pl.wojtach.malinka.databinding.ActivityLoginBinding
 import pl.wojtach.malinka.state.State
 
@@ -28,7 +27,7 @@ class LoginActivity : Activity() {
         val state = savedInstanceState?.getParcelable<State>("STATE")
                 ?: intent.getParcelableExtra("STATE")
                 ?: throw AssertionError("No state acquired")
-        stateMachine = StateMachineImpl(state)
+        stateMachine = StateMachine.getInstance(state)
     }
 
 
