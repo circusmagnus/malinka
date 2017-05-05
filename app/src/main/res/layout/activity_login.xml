@@ -7,6 +7,10 @@
             name="model"
             type="pl.wojtach.malinka.ui.login_screen.LoginViewModel" />
 
+        <variable
+            name="dispatcher"
+            type="pl.wojtach.malinka.ui.login_screen.LoginActionDispatcher" />
+
 
         <import type="android.view.View" />
     </data>
@@ -44,12 +48,12 @@
                 android:orientation="vertical">
 
                 <AutoCompleteTextView
-                    android:id="@+id/email"
+                    android:id="@+id/user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/user_name"
                     android:inputType="textPersonName"
-                    android:text="@={model.user}"
+                    android:text="@{model.user}"
                     android:maxLines="1" />
 
                 <EditText
@@ -62,7 +66,7 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:text="@={model.password}" />
+                    android:text="@{model.password}" />
 
                 <Button
                     android:id="@+id/email_sign_in_button"
@@ -72,7 +76,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/action_sign_in"
                     android:textStyle="bold"
-                    android:onClick="@{model::dispatchAction}" />
+                    android:onClick="" />
 
             </LinearLayout>
         </ScrollView>

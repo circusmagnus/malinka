@@ -1,5 +1,7 @@
 package pl.wojtach.malinka.core
 
+import pl.wojtach.malinka.state.LoginState
+import pl.wojtach.malinka.state.PHASE
 import pl.wojtach.malinka.state.State
 
 
@@ -18,7 +20,11 @@ class InitStateAction : Action<State> {
 
 class LoginAction(val user: String, val password: String) : Action<State> {
     override fun transformState(oldState: State): State {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return oldState.copy(loginState = LoginState(
+                phaseOfLogging = PHASE.IN_PROGRESS,
+                currentUser = user,
+                currentPassword = password
+        ))
     }
 
 }
