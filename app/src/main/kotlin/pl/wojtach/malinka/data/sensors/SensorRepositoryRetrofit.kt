@@ -10,15 +10,17 @@ import retrofit2.http.Query
 /**
  * Created by Lukasz on 08.01.2017.
  */
-class SensorRepositoryRetrofit(val sensorDataProvider: RetrofitProvider) : SensorRepository {
+class SensorRepositoryRetrofit(val retrofitProvider: RetrofitProvider) : SensorRepository {
+
+    val sensorDataProvider = retrofitProvider.retrofit.create(SensorDataProvider::class.java)
 
     override fun setSensorStatus(sensor: Sensor): Observable<Void> {
         fun getStatus() = if (sensor.isActive) 1 else 0
-        return sensorDataProvider.dataProvider.setDeviceStatus(sensor.mac, sensor.type, getStatus())
+        return sensorDataProvider.setDeviceStatus(sensor.mac, sensor.type, getStatus())
     }
 
     override fun getInfoFromSensors(location: SensorLocation): Observable<List<Sensor>> {
-        return sensorDataProvider.dataProvider.getSensors()
+        return sensorDataProvider.getSensors()
     }
 }
 

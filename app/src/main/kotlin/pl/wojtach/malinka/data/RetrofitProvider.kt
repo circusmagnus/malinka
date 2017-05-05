@@ -12,11 +12,8 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitProvider {
 
-    val dataProvider = provideSensorDataProviderRetrofit(
-            provideRetrofit(
-                    provideClient(), provideGson()
-            )
-    )
+    val retrofit = provideRetrofit(provideClient(), provideGson())
+
 
     private fun provideSensorDataProviderRetrofit(retrofit: Retrofit): SensorDataProvider {
         return retrofit.create(SensorDataProvider::class.java)
