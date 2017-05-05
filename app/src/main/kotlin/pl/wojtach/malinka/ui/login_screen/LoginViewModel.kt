@@ -9,7 +9,7 @@ import pl.wojtach.malinka.state.State
 /**
  * Created by lukaszwojtach on 16.04.2017.
  */
-internal class LoginViewModel(val stateMachine: StateMachine<State>) {
+internal class LoginViewModel(stateMachine: StateMachine<State>) {
 
     var isInProgress = ObservableField(View.INVISIBLE)
     var user = ObservableField("")
