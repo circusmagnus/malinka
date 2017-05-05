@@ -1,6 +1,5 @@
 package pl.wojtach.malinka.ui.login_screen
 
-import android.view.View
 import android.widget.TextView
 import pl.wojtach.malinka.core.LoginAction
 import pl.wojtach.malinka.core.StateMachine
@@ -11,15 +10,9 @@ import pl.wojtach.malinka.state.State
  */
 
 
-class LoginActionDispatcher(val stateMachine: StateMachine<State>,
-                            val userField: TextView,
-                            val passwordField: TextView) {
+class LoginActionDispatcher(val stateMachine: StateMachine<State>) {
 
-    fun login(view: View) {
-        stateMachine.dispatch(
-                LoginAction(user = userField.text.toString(),
-                        password = passwordField.text.toString()
-                )
-        )
+    fun login(userField: TextView, passwordField: TextView) {
+        stateMachine.dispatch(LoginAction(userField.text.toString(), passwordField.text.toString()))
     }
 }

@@ -21,9 +21,7 @@ class LoginActivity : Activity() {
     private fun setupDataBinding() {
         val view = DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
         view.model = LoginViewModel(stateMachine)
-        view.dispatcher = LoginActionDispatcher(stateMachine = stateMachine,
-                userField = view.user,
-                passwordField = view.password)
+        view.dispatcher = LoginActionDispatcher(stateMachine)
     }
 
     private fun setupStateMachine(savedInstanceState: Bundle) {

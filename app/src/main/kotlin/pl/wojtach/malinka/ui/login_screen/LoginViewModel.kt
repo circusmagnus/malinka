@@ -14,7 +14,6 @@ internal class LoginViewModel(val stateMachine: StateMachine<State>) {
     var isInProgress = ObservableField(View.INVISIBLE)
     var user = ObservableField("")
     var password = ObservableField("")
-    //var error = ObservableField(stateMachine.getState().errorState != null )
     var errorMessage: ObservableField<String?> = ObservableField(null)
 
     init {
