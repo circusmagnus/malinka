@@ -18,6 +18,11 @@ class LoginActivity : Activity() {
         setupDataBinding()
     }
 
+    override fun onSaveInstanceState(outState: Bundle?) {
+        outState?.putParcelable(State.BUNDLE_KEY, stateMachine.getState())
+        super.onSaveInstanceState(outState)
+    }
+
     private fun setupDataBinding() {
         val view = DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
         view.model = LoginViewModel(stateMachine)
@@ -25,8 +30,8 @@ class LoginActivity : Activity() {
     }
 
     private fun setupStateMachine(savedInstanceState: Bundle) {
-        val state = savedInstanceState?.getParcelable<State>("STATE")
-                ?: intent.getParcelableExtra("STATE")
+        val state = savedInstanceState?.getParcelable<State>(State.BUNDLE_KEY)
+                ?: intent.getParcelableExtra(State.BUNDLE_KEY)
                 ?: throw AssertionError("No state acquired")
         stateMachine = StateMachine.getInstance(state)
     }

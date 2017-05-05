@@ -20,6 +20,8 @@ data class State(
             override fun createFromParcel(source: Parcel): State = State(source)
             override fun newArray(size: Int): Array<State?> = arrayOfNulls(size)
         }
+
+        const val BUNDLE_KEY = "STATE"
     }
 
     constructor(source: Parcel) : this(
