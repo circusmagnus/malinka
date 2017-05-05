@@ -1,9 +1,9 @@
-package pl.wojtach.malinka.core
+package pl.wojtach.malinka.state
 
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
-import pl.wojtach.malinka.state.State
+import pl.wojtach.malinka.Action
 
 /**
  * Created by lukaszwojtach on 17.04.2017.

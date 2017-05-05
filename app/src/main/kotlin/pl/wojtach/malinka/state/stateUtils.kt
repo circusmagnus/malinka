@@ -1,8 +1,4 @@
-package pl.wojtach.malinka.core
-
-import pl.wojtach.malinka.state.LoginState
-import pl.wojtach.malinka.state.PHASE
-import pl.wojtach.malinka.state.State
+package pl.wojtach.malinka.state
 
 /**
  * Created by lukaszwojtach on 17.04.2017.

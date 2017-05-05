@@ -1,8 +1,9 @@
-package pl.wojtach.malinka.core
+package pl.wojtach.malinka
 
 import pl.wojtach.malinka.state.LoginState
 import pl.wojtach.malinka.state.PHASE
 import pl.wojtach.malinka.state.State
+import pl.wojtach.malinka.state.createInitialState
 
 
 /**

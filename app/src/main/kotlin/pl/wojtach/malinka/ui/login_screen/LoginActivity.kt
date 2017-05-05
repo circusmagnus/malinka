@@ -4,9 +4,9 @@ import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import pl.wojtach.malinka.R
-import pl.wojtach.malinka.core.StateMachine
 import pl.wojtach.malinka.databinding.ActivityLoginBinding
 import pl.wojtach.malinka.state.State
+import pl.wojtach.malinka.state.StateMachine
 
 class LoginActivity : Activity() {
 

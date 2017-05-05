@@ -2,10 +2,8 @@ package pl.wojtach.malinka.core
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import pl.wojtach.malinka.state.ErrorState
-import pl.wojtach.malinka.state.LoginState
-import pl.wojtach.malinka.state.PHASE
-import pl.wojtach.malinka.state.State
+import pl.wojtach.malinka.InitStateAction
+import pl.wojtach.malinka.state.*
 
 /**
  * Created by lukaszwojtach on 17.04.2017.
