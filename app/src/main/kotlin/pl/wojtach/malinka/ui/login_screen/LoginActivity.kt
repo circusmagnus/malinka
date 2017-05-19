@@ -16,7 +16,9 @@ class LoginActivity : Activity() {
         super.onCreate(savedInstanceState)
         setupStateMachine(savedInstanceState)
         setupDataBinding()
+        setupBackgroundJobs()
     }
+
 
     override fun onSaveInstanceState(outState: Bundle?) {
         outState?.putParcelable(State.BUNDLE_KEY, stateMachine.getState())
@@ -34,6 +36,10 @@ class LoginActivity : Activity() {
                 ?: intent.getParcelableExtra(State.BUNDLE_KEY)
                 ?: throw AssertionError("No state acquired")
         stateMachine = StateMachine.getInstance(state)
+    }
+
+    private fun setupBackgroundJobs() {
+
     }
 
 

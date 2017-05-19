@@ -19,7 +19,7 @@ class InitStateAction : Action<State> {
 
 }
 
-class LoginAction(val user: String, val password: String) : Action<State> {
+class StartLoginAction(val user: String, val password: String) : Action<State> {
     override fun transformState(oldState: State): State {
         return oldState.copy(loginState = LoginState(
                 phaseOfLogging = PHASE.IN_PROGRESS,
@@ -27,5 +27,21 @@ class LoginAction(val user: String, val password: String) : Action<State> {
                 currentPassword = password
         ))
     }
+}
 
+class LoginSuccesAction : Action<State> {
+    override fun transformState(oldState: State): State {
+        return oldState.copy(
+                loginState = oldState.loginState.copy(phaseOfLogging = PHASE.FINISHED)
+        )
+    }
+}
+
+class LoginErrorAction : Action<State> {
+    override fun transformState(oldState: State): State {
+        return oldState.copy(
+                loginState = oldState.loginState.copy(phaseOfLogging = PHASE.FAILED
+                )
+        )
+    }
 }

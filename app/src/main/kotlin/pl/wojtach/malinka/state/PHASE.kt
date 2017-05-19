@@ -6,5 +6,6 @@ package pl.wojtach.malinka.state
 enum class PHASE {
     NOT_STARTED,
     IN_PROGRESS,
-    FINISHED
+    FINISHED,
+    FAILED
 }
