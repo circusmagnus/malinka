@@ -4,8 +4,6 @@ import android.widget.TextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import pl.wojtach.malinka.LoginErrorAction
-import pl.wojtach.malinka.LoginSuccesAction
 import pl.wojtach.malinka.StartLoginAction
 import pl.wojtach.malinka.data.sensors.SensorRepository
 import pl.wojtach.malinka.state.State
@@ -43,12 +41,6 @@ class LoginActionDispatcher(val stateMachine: StateMachine<State>, val loggableE
     private fun toLoadingState(data: LoginData) {
         stateMachine.dispatch(StartLoginAction(data.user, data.password))
     }
-
-    private fun toLoggedInState() {
-        stateMachine.dispatch(LoginSuccesAction())
-    }
-
-    private fun toLoginErrorState() = stateMachine.dispatch(LoginErrorAction())
 }
 
 data class LoginData(val user: String, val password: String)

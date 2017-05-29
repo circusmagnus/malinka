@@ -1,6 +1,7 @@
 package pl.wojtach.malinka.data.sensors
 
 import io.reactivex.Observable
+import pl.wojtach.malinka.data.RetrofitProvider
 import pl.wojtach.malinka.entities.Sensor
 import pl.wojtach.malinka.entities.SensorLocation
 
@@ -11,4 +12,8 @@ interface SensorRepository {
     fun getInfoFromSensors(location: SensorLocation = SensorLocation.KOSZALIN): Observable<List<Sensor>>
 
     fun setSensorStatus(sensor: Sensor): Observable<Void>
+
+    companion object {
+        fun provideSensorRepository(): SensorRepository = SensorRepositoryRetrofit(RetrofitProvider)
+    }
 }
