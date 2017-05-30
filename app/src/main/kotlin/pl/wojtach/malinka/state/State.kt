@@ -8,7 +8,8 @@ import android.os.Parcelable
  */
 data class State(
         val errorState: ErrorState?,
-        val loginState: LoginState
+        val loginState: LoginState,
+        val sensorState: SensorState
         //val mainScreenState: MainScreenState,
         //val enviromentState: EnviromentState
 )
@@ -26,7 +27,8 @@ data class State(
 
     constructor(source: Parcel) : this(
             source.readParcelable<ErrorState>(ErrorState::class.java.classLoader),
-            source.readParcelable<LoginState>(LoginState::class.java.classLoader)
+            source.readParcelable<LoginState>(LoginState::class.java.classLoader),
+            source.readParcelable<SensorState>(SensorState::class.java.classLoader)
     )
 
     override fun describeContents() = 0
@@ -34,5 +36,6 @@ data class State(
     override fun writeToParcel(dest: Parcel, flags: Int) {
         dest.writeParcelable(errorState, 0)
         dest.writeParcelable(loginState, 0)
+        dest.writeParcelable(sensorState, 0)
     }
 }

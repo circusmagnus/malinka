@@ -1,6 +1,6 @@
 package pl.wojtach.malinka.data.sensors
 
-import io.reactivex.Observable
+import io.reactivex.Single
 import pl.wojtach.malinka.data.RetrofitProvider
 import pl.wojtach.malinka.entities.Sensor
 import pl.wojtach.malinka.entities.SensorLocation
@@ -14,14 +14,11 @@ class SensorRepositoryRetrofit(val retrofitProvider: RetrofitProvider) : SensorR
 
     val sensorDataProvider = retrofitProvider.retrofit.create(SensorDataProvider::class.java)
 
-    override fun setSensorStatus(sensor: Sensor): Observable<Void> {
-        fun getStatus() = if (sensor.isActive) 1 else 0
-        return sensorDataProvider.setDeviceStatus(sensor.mac, sensor.type, getStatus())
-    }
+    override fun setSensorStatus(sensor: Sensor) = sensorDataProvider.setDeviceStatus(sensor.mac, sensor.type, getStatus(sensor))
 
-    override fun getInfoFromSensors(location: SensorLocation): Observable<List<Sensor>> {
-        return sensorDataProvider.getSensors()
-    }
+    fun getStatus(sensor: Sensor) = if (sensor.isActive) 1 else 0
+
+    override fun getInfoFromSensors(location: SensorLocation) = sensorDataProvider.getSensors()
 }
 
 /**
@@ -30,10 +27,10 @@ class SensorRepositoryRetrofit(val retrofitProvider: RetrofitProvider) : SensorR
 interface SensorDataProvider {
 
     @GET("lastStatus")
-    fun getSensors(): Observable<List<Sensor>>
+    fun getSensors(): Single<List<Sensor>>
 
     @GET("setDeviceStatus")
     fun setDeviceStatus(@Query("sensor") macAddres: String,
                         @Query("type") type: Int,
-                        @Query("status") isActive: Int): Observable<Void>
+                        @Query("status") isActive: Int): Single<Void>
 }

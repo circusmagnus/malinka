@@ -1,9 +1,7 @@
 package pl.wojtach.malinka
 
-import pl.wojtach.malinka.state.LoginState
-import pl.wojtach.malinka.state.PHASE
-import pl.wojtach.malinka.state.State
-import pl.wojtach.malinka.state.createInitialState
+import pl.wojtach.malinka.entities.Sensor
+import pl.wojtach.malinka.state.*
 
 
 /**
@@ -29,10 +27,11 @@ class StartLoginAction(val user: String, val password: String) : Action<State> {
     }
 }
 
-class LoginSuccesAction : Action<State> {
+class LoginSuccesAction(val sensors: List<Sensor>) : Action<State> {
     override fun transformState(oldState: State): State {
         return oldState.copy(
-                loginState = oldState.loginState.copy(phaseOfLogging = PHASE.FINISHED)
+                loginState = oldState.loginState.copy(phaseOfLogging = PHASE.FINISHED),
+                sensorState = SensorState(phase = PHASE.FINISHED, sensors = sensors)
         )
     }
 }
