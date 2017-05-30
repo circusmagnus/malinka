@@ -12,6 +12,10 @@ import pl.wojtach.malinka.entities.Sensor
  */
 interface DataFetcher {
     fun fetchData(): Single<List<Sensor>>
+
+    companion object {
+        fun withRetrofit() = DataFetcherRetrofit(SensorRepository.provideSensorRepository())
+    }
 }
 
 class DataFetcherRetrofit(val repository: SensorRepository) : DataFetcher {

@@ -13,3 +13,4 @@ class LoginSuccesAction(val sensors: List<Sensor>) : Action<State> {
         )
     }
 }
+

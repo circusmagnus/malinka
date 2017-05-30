@@ -26,7 +26,7 @@ internal class LoginViewModel(stateMachine: StateMachine<State>) {
         user.set(state.loginState.currentUser)
         password.set(state.loginState.currentPassword)
         // error = ObservableField(stateMachine.getState().errorState != null )
-        errorMessage.set(state.errorState?.errorMessages?.first())
+        errorMessage.set(state.errorState?.errorMessages?.firstOrNull() ?: "")
     }
 
     private fun determineProgressVisibility(state: State) =

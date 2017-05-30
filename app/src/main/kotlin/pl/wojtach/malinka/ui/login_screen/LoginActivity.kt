@@ -4,6 +4,8 @@ import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import pl.wojtach.malinka.R
+import pl.wojtach.malinka.Starter
+import pl.wojtach.malinka.data.DataFetcher
 import pl.wojtach.malinka.databinding.ActivityLoginBinding
 import pl.wojtach.malinka.state.State
 import pl.wojtach.malinka.state.StateMachine
@@ -11,12 +13,13 @@ import pl.wojtach.malinka.state.StateMachine
 class LoginActivity : Activity() {
 
     private lateinit var stateMachine: StateMachine<State>
+    private lateinit var starter: Starter
 
-    override fun onCreate(savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupStateMachine(savedInstanceState)
         setupDataBinding()
-        setupBackgroundJobs()
+        setupComponentStarter()
     }
 
 
@@ -28,19 +31,17 @@ class LoginActivity : Activity() {
     private fun setupDataBinding() {
         val view = DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
         view.model = LoginViewModel(stateMachine)
-        view.dispatcher = LoginActionDispatcher(stateMachine)
+        view.dispatcher = LoginActionDispatcher(stateMachine, DataFetcher.withRetrofit())
     }
 
-    private fun setupStateMachine(savedInstanceState: Bundle) {
+    private fun setupStateMachine(savedInstanceState: Bundle?) {
         val state = savedInstanceState?.getParcelable<State>(State.BUNDLE_KEY)
                 ?: intent.getParcelableExtra(State.BUNDLE_KEY)
                 ?: throw AssertionError("No state acquired")
         stateMachine = StateMachine.getInstance(state)
     }
 
-    private fun setupBackgroundJobs() {
-
+    private fun setupComponentStarter() {
+        starter = LoginActivityStarter(context = this, stateMachine = stateMachine)
     }
-
-
 }
