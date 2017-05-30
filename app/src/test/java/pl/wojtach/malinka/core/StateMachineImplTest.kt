@@ -3,7 +3,7 @@ package pl.wojtach.malinka.core
 import io.reactivex.observers.TestObserver
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import pl.wojtach.malinka.Action
+import pl.wojtach.malinka.actions.Action
 import pl.wojtach.malinka.state.State
 import pl.wojtach.malinka.state.StateMachine
 import pl.wojtach.malinka.state.StateMachineImpl

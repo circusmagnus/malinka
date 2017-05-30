@@ -3,9 +3,9 @@ package pl.wojtach.malinka.ui.login_screen
 import android.widget.TextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.PublishSubject
-import pl.wojtach.malinka.LoginErrorAction
-import pl.wojtach.malinka.LoginSuccesAction
-import pl.wojtach.malinka.StartLoginAction
+import pl.wojtach.malinka.actions.LoginErrorAction
+import pl.wojtach.malinka.actions.LoginSuccesAction
+import pl.wojtach.malinka.actions.StartLoginAction
 import pl.wojtach.malinka.data.DataFetcherRetrofit
 import pl.wojtach.malinka.data.sensors.SensorRepository
 import pl.wojtach.malinka.entities.Sensor
@@ -35,14 +35,14 @@ class LoginActionDispatcher(val stateMachine: StateMachine<State>, val loggableE
 
     private fun runLoginActions(data: LoginData) {
         toLoadingState(data)
-        DataFetcherRetrofit(loggableEntity).fetchData().subscribe({ toLoggedInState(it) }, { toLoginErrorState() })
+        DataFetcherRetrofit(loggableEntity).fetchData().subscribe({ toLoggedInState(it) }, { toLoginErrorState(it.message ?: "Error logging in") })
     }
 
     private fun toLoadingState(data: LoginData) = stateMachine.dispatch(StartLoginAction(data.user, data.password))
 
     private fun toLoggedInState(sensors: List<Sensor>) = stateMachine.dispatch(LoginSuccesAction(sensors))
 
-    private fun toLoginErrorState() = stateMachine.dispatch(LoginErrorAction())
+    private fun toLoginErrorState(errorMessage: String) = stateMachine.dispatch(LoginErrorAction(errorMessage))
 }
 
 data class LoginData(val user: String, val password: String)

@@ -10,4 +10,9 @@ fun createInitialState() = State(
                 phaseOfLogging = PHASE.NOT_STARTED,
                 currentPassword = "",
                 currentUser = ""
-        ))
+        ),
+        sensorState = SensorState(
+                phase = PHASE.NOT_STARTED,
+                sensors = emptyList()
+        )
+)

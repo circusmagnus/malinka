@@ -2,7 +2,7 @@ package pl.wojtach.malinka.core
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import pl.wojtach.malinka.InitStateAction
+import pl.wojtach.malinka.actions.InitStateAction
 import pl.wojtach.malinka.state.*
 
 /**

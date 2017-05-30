@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.ui.login_screen
+package pl.wojtach.malinka
 
 import android.content.Context
 import android.content.Intent
