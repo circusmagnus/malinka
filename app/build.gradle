@@ -41,17 +41,6 @@ dependencies {
         exclude group: "org.jetbrains.kotlin"
     }
 
-    testCompile("org.jetbrains.spek:spek-api:1.0.89") {
-        exclude group: "org.jetbrains.kotlin"
-    }
-    testCompile("org.jetbrains.spek:spek-junit-platform-engine:1.0.89") {
-        exclude group: "org.jetbrains.kotlin"
-    }
-    testCompile "org.junit.platform:junit-platform-runner:1.0.0-M2"
-
-    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-
-
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     //compile 'com.google.code.gson:gson:2.6.1'
