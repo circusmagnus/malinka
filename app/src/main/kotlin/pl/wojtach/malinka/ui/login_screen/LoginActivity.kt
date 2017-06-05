@@ -5,7 +5,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import pl.wojtach.malinka.R
 import pl.wojtach.malinka.Starter
-import pl.wojtach.malinka.data.DataFetcher
+import pl.wojtach.malinka.data.SensorDataFetcher
 import pl.wojtach.malinka.databinding.ActivityLoginBinding
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.State
@@ -33,7 +33,7 @@ class LoginActivity : Activity() {
     private fun setupDataBinding() {
         val view = DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
         view.model = LoginViewModel(stateMachine)
-        view.dispatcher = LoginActionDispatcher(stateMachine, DataFetcher.withRetrofit())
+        view.dispatcher = LoginActionDispatcher(stateMachine, SensorDataFetcher.withRetrofit())
     }
 
     private fun setupStateMachine(savedInstanceState: Bundle?) {

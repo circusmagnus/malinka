@@ -6,7 +6,7 @@ import io.reactivex.subjects.PublishSubject
 import pl.wojtach.malinka.actions.LoginErrorAction
 import pl.wojtach.malinka.actions.LoginSuccesAction
 import pl.wojtach.malinka.actions.StartLoginAction
-import pl.wojtach.malinka.data.DataFetcher
+import pl.wojtach.malinka.data.SensorDataFetcher
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.entities.Sensor
 import pl.wojtach.malinka.statemachine.states.State
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
  */
 
 
-class LoginActionDispatcher(val stateMachine: StateMachine<State>, val dataFetcher: DataFetcher) {
+class LoginActionDispatcher(val stateMachine: StateMachine<State>, val sensorDataFetcher: SensorDataFetcher) {
 
     val eventsReceiver: PublishSubject<LoginData> = PublishSubject.create<LoginData>()
 
@@ -36,7 +36,7 @@ class LoginActionDispatcher(val stateMachine: StateMachine<State>, val dataFetch
 
     private fun runLoginActions(data: LoginData) {
         toLoadingState(data)
-        dataFetcher.fetchData().subscribe({ toLoggedInState(it) }, { toLoginErrorState(it.message ?: "Error logging in") })
+        sensorDataFetcher.fetchData().subscribe({ toLoggedInState(it) }, { toLoginErrorState(it.message ?: "Error logging in") })
     }
 
     private fun toLoadingState(data: LoginData) = stateMachine.dispatch(StartLoginAction(data.user, data.password))
