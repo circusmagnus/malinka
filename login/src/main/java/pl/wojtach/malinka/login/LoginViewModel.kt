@@ -1,11 +1,9 @@
-package pl.wojtach.malinka.ui.login_screen
+package pl.wojtach.malinka.login
 
-import android.databinding.ObservableField
 import android.view.View
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.PHASE
 import pl.wojtach.malinka.statemachine.states.State
-
 
 
 /**

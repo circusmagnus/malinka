@@ -1,11 +1,11 @@
-package pl.wojtach.malinka.ui.login_screen
+package pl.wojtach.malinka.login
 
 import android.widget.TextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.PublishSubject
-import pl.wojtach.malinka.actions.LoginErrorAction
-import pl.wojtach.malinka.actions.LoginSuccesAction
-import pl.wojtach.malinka.actions.StartLoginAction
+import pl.wojtach.malinka.login.actions.LoginErrorAction
+import pl.wojtach.malinka.login.actions.LoginSuccesAction
+import pl.wojtach.malinka.login.actions.StartLoginAction
 import pl.wojtach.malinka.networking.SensorDataFetcher
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.entities.Sensor
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
  */
 
 
-class LoginActionDispatcher(val stateMachine: StateMachine<State>, val sensorDataFetcher: SensorDataFetcher) {
+internal class LoginActionDispatcher(val stateMachine: StateMachine<State>, val sensorDataFetcher: SensorDataFetcher) {
 
     val eventsReceiver: PublishSubject<LoginData> = PublishSubject.create<LoginData>()
 

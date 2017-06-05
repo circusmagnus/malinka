@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.actions
+package pl.wojtach.malinka.login.actions
 
 
 import pl.wojtach.malinka.statemachine.Action

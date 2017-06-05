@@ -19,7 +19,7 @@ interface SensorDataFetcher {
 
 internal class SensorDataFetcherRetrofit : SensorDataFetcher {
 
-    override fun fetchData() = RetrofitProvider
+    override fun fetchData(): Single<List<Sensor>> = RetrofitProvider
             .retrofit
             .create(DataProvider::class.java)
             .getSensors()

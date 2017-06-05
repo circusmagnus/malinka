@@ -57,6 +57,7 @@ dependencies {
 
     compile project(':stateMachine')
     compile project(':networking')
+    compile project(':login')
 }
 repositories {
     mavenCentral()
