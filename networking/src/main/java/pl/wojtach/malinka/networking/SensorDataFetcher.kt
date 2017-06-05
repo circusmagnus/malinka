@@ -1,7 +1,6 @@
-package pl.wojtach.malinka.data
+package pl.wojtach.malinka.networking
 
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import pl.wojtach.malinka.statemachine.entities.Sensor
 import retrofit2.http.GET
@@ -25,7 +24,7 @@ internal class SensorDataFetcherRetrofit : SensorDataFetcher {
             .create(DataProvider::class.java)
             .getSensors()
             .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+    //.observeOn(AndroidSchedulers.mainThread())
 
 }
 

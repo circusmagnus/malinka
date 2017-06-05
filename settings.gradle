@@ -1,1 +1,1 @@
-include ':app', ':stateMachine'
+include ':app', ':stateMachine', ':networking'

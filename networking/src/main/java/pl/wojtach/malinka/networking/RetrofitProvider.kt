@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.data
+package pl.wojtach.malinka.networking
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -9,7 +9,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object RetrofitProvider {
+internal object RetrofitProvider {
 
     val retrofit = provideRetrofit(provideClient(), provideGson())
 

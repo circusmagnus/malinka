@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.data.sensors
+package pl.wojtach.malinka.networking
 
 import io.reactivex.Single
 import pl.wojtach.malinka.statemachine.entities.Sensor

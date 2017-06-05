@@ -6,7 +6,7 @@ import io.reactivex.subjects.PublishSubject
 import pl.wojtach.malinka.actions.LoginErrorAction
 import pl.wojtach.malinka.actions.LoginSuccesAction
 import pl.wojtach.malinka.actions.StartLoginAction
-import pl.wojtach.malinka.data.SensorDataFetcher
+import pl.wojtach.malinka.networking.SensorDataFetcher
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.entities.Sensor
 import pl.wojtach.malinka.statemachine.states.State
