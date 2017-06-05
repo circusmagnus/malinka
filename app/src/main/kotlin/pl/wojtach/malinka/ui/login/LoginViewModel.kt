@@ -1,8 +1,8 @@
-package pl.wojtach.malinka.login
+package pl.wojtach.malinka.ui.login
 
+import android.databinding.ObservableField
 import android.view.View
 import pl.wojtach.malinka.statemachine.StateMachine
-import pl.wojtach.malinka.statemachine.states.PHASE
 import pl.wojtach.malinka.statemachine.states.State
 
 
@@ -21,7 +21,7 @@ internal class LoginViewModel(stateMachine: StateMachine<State>) {
         stateMachine.getPublisher().subscribe { render(it) }
     }
 
-    private fun render(state: State) {
+    private fun render(state: pl.wojtach.malinka.statemachine.states.State) {
         isInProgress.set(determineProgressVisibility(state))
         user.set(state.loginState.currentUser)
         password.set(state.loginState.currentPassword)
@@ -29,8 +29,8 @@ internal class LoginViewModel(stateMachine: StateMachine<State>) {
         errorMessage.set(state.errorState?.errorMessages?.firstOrNull() ?: "")
     }
 
-    private fun determineProgressVisibility(state: State) =
-            if (state.loginState.phaseOfLogging == PHASE.IN_PROGRESS) View.VISIBLE
-            else View.INVISIBLE
+    private fun determineProgressVisibility(state: pl.wojtach.malinka.statemachine.states.State) =
+            if (state.loginState.phaseOfLogging == pl.wojtach.malinka.statemachine.states.PHASE.IN_PROGRESS) android.view.View.VISIBLE
+            else android.view.View.INVISIBLE
 
 }

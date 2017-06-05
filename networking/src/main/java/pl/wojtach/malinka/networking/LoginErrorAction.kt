@@ -1,9 +1,7 @@
-package pl.wojtach.malinka.login.actions
-
-import pl.wojtach.malinka.statemachine.states.State
+package pl.wojtach.malinka.networking
 
 
-internal class LoginErrorAction(val errorMessage: String) : pl.wojtach.malinka.statemachine.Action<State> {
+internal class LoginErrorAction(val errorMessage: String) : pl.wojtach.malinka.statemachine.Action<pl.wojtach.malinka.statemachine.states.State> {
     override fun transformState(oldState: pl.wojtach.malinka.statemachine.states.State): pl.wojtach.malinka.statemachine.states.State {
         return oldState.copy(
                 loginState = oldState.loginState.copy(phaseOfLogging = pl.wojtach.malinka.statemachine.states.PHASE.FAILED),

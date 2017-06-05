@@ -1,10 +1,12 @@
-package pl.wojtach.malinka.login
+package pl.wojtach.malinka.ui.login
 
 import android.content.Context
 import android.content.Intent
+import pl.wojtach.malinka.Starter
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.PHASE
 import pl.wojtach.malinka.statemachine.states.State
+import pl.wojtach.malinka.ui.main_screen.MainActivity
 
 
 /**

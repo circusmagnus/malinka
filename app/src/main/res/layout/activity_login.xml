@@ -5,11 +5,11 @@
 
         <variable
             name="model"
-            type="pl.wojtach.malinka.ui.login_screen.LoginViewModel" />
+            type="pl.wojtach.malinka.ui.login.LoginViewModel" />
 
         <variable
             name="dispatcher"
-            type="pl.wojtach.malinka.ui.login_screen.LoginActionDispatcher" />
+            type="pl.wojtach.malinka.ui.login.LoginActionDispatcher" />
 
 
         <import type="android.view.View" />
@@ -53,8 +53,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/user_name"
                     android:inputType="textPersonName"
-                    android:text="@{model.user}"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:text="@{model.user}" />
 
                 <EditText
                     android:id="@+id/password"
@@ -74,9 +74,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:onClick="@{() -> dispatcher.login(user, password)}"
                     android:text="@string/action_sign_in"
-                    android:textStyle="bold"
-                    android:onClick="@{() -> dispatcher.login(user, password)}" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </ScrollView>

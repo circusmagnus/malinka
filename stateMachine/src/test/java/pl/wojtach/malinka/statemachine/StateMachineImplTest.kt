@@ -1,11 +1,8 @@
-package pl.wojtach.malinka.state
+package pl.wojtach.malinka.statemachine
 
 import io.reactivex.observers.TestObserver
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import pl.wojtach.malinka.statemachine.Action
-import pl.wojtach.malinka.statemachine.StateMachine
-import pl.wojtach.malinka.statemachine.createInitialState
 import pl.wojtach.malinka.statemachine.states.State
 
 

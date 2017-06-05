@@ -1,7 +1,6 @@
-package pl.wojtach.malinka.actions
+package pl.wojtach.malinka.ui.login.actions
 
 import org.amshove.kluent.shouldEqual
-import org.junit.Test
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.createInitialState
 import pl.wojtach.malinka.statemachine.states.LoginState
@@ -14,7 +13,7 @@ import pl.wojtach.malinka.statemachine.states.PHASE
 class StartLoginActionTest {
 
     //TODO install spek from: https://medium.com/@jozemberi/developing-with-kotlin-and-testing-with-spek-d69a94857d
-    @Test
+    @org.junit.Test
     fun transformState() {
         //given
         val oldState = createInitialState()
