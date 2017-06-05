@@ -14,11 +14,11 @@ interface SensorDataFetcher {
     fun fetchData(): Single<List<Sensor>>
 
     companion object {
-        fun withRetrofit() = SensorDataFetcherRetrofit()
+        fun withRetrofit(): SensorDataFetcher = SensorDataFetcherRetrofit()
     }
 }
 
-class SensorDataFetcherRetrofit : SensorDataFetcher {
+internal class SensorDataFetcherRetrofit : SensorDataFetcher {
 
     override fun fetchData() = RetrofitProvider
             .retrofit
