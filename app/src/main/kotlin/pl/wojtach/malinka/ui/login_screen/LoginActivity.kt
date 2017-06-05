@@ -7,8 +7,10 @@ import pl.wojtach.malinka.R
 import pl.wojtach.malinka.Starter
 import pl.wojtach.malinka.data.DataFetcher
 import pl.wojtach.malinka.databinding.ActivityLoginBinding
-import pl.wojtach.malinka.state.State
-import pl.wojtach.malinka.state.StateMachine
+import pl.wojtach.malinka.statemachine.StateMachine
+import pl.wojtach.malinka.statemachine.states.State
+
+
 
 class LoginActivity : Activity() {
 

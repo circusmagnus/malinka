@@ -1,9 +1,9 @@
-package pl.wojtach.malinka.state
+package pl.wojtach.malinka.statemachine
 
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
-import pl.wojtach.malinka.actions.Action
+import pl.wojtach.malinka.statemachine.states.State
 
 /**
  * Created by lukaszwojtach on 17.04.2017.
@@ -14,11 +14,11 @@ interface StateMachine<STATE> {
     fun getPublisher(): Observable<STATE>
 
     companion object {
-        fun getInstance(initialState: State) = StateMachineImpl(initialState)
+        fun getInstance(initialState: State): StateMachine<State> = StateMachineImpl(initialState)
     }
 }
 
-class StateMachineImpl(initialState: State) : StateMachine<State> {
+internal class StateMachineImpl(initialState: State) : StateMachine<State> {
 
 
     private val publisher: Subject<State> = PublishSubject.create()

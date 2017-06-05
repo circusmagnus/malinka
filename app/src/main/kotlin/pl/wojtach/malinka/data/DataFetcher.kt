@@ -4,7 +4,7 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import pl.wojtach.malinka.data.sensors.SensorRepository
-import pl.wojtach.malinka.entities.Sensor
+import pl.wojtach.malinka.statemachine.entities.Sensor
 
 
 /**

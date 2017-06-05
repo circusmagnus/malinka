@@ -5,8 +5,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import pl.wojtach.malinka.R
-import pl.wojtach.malinka.entities.Sensor
 import pl.wojtach.malinka.databinding.SensorViewholderBinding
+import pl.wojtach.malinka.statemachine.entities.Sensor
 
 class SensorAdapter(val sensors: MutableList<Sensor>) : RecyclerView.Adapter<SensorAdapter.SensorViewHolder>() {
 

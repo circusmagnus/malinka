@@ -1,8 +1,10 @@
 package pl.wojtach.malinka.actions
 
-import pl.wojtach.malinka.state.ErrorState
-import pl.wojtach.malinka.state.PHASE
-import pl.wojtach.malinka.state.State
+import pl.wojtach.malinka.statemachine.Action
+import pl.wojtach.malinka.statemachine.states.ErrorState
+import pl.wojtach.malinka.statemachine.states.PHASE
+import pl.wojtach.malinka.statemachine.states.State
+
 
 class LoginErrorAction(val errorMessage: String) : Action<State> {
     override fun transformState(oldState: State): State {

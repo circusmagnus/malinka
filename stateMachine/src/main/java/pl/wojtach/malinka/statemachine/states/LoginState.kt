@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.state
+package pl.wojtach.malinka.statemachine.states
 
 import android.os.Parcel
 import android.os.Parcelable

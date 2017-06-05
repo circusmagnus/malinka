@@ -2,10 +2,10 @@ package pl.wojtach.malinka.actions
 
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
-import pl.wojtach.malinka.state.LoginState
-import pl.wojtach.malinka.state.PHASE
-import pl.wojtach.malinka.state.StateMachineImpl
-import pl.wojtach.malinka.state.createInitialState
+import pl.wojtach.malinka.statemachine.StateMachine
+import pl.wojtach.malinka.statemachine.createInitialState
+import pl.wojtach.malinka.statemachine.states.LoginState
+import pl.wojtach.malinka.statemachine.states.PHASE
 
 
 /**
@@ -18,7 +18,7 @@ class StartLoginActionTest {
     fun transformState() {
         //given
         val oldState = createInitialState()
-        val stateMachine = StateMachineImpl(oldState)
+        val stateMachine = StateMachine.getInstance(createInitialState())
         val user = "abc"
         val password = "123"
 

@@ -1,7 +1,4 @@
-package pl.wojtach.malinka.state
-
-import android.os.Parcel
-import android.os.Parcelable
+package pl.wojtach.malinka.statemachine.states
 
 /**
  * Created by lukaszwojtach on 16.04.2017.
@@ -15,17 +12,17 @@ data class State(
 )
 
 //Parcelable impl below
-    : Parcelable {
+    : android.os.Parcelable {
     companion object {
-        @JvmField val CREATOR: Parcelable.Creator<State> = object : Parcelable.Creator<State> {
-            override fun createFromParcel(source: Parcel): State = State(source)
+        @JvmField val CREATOR: android.os.Parcelable.Creator<State> = object : android.os.Parcelable.Creator<State> {
+            override fun createFromParcel(source: android.os.Parcel): State = State(source)
             override fun newArray(size: Int): Array<State?> = arrayOfNulls(size)
         }
 
         const val BUNDLE_KEY = "STATE"
     }
 
-    constructor(source: Parcel) : this(
+    constructor(source: android.os.Parcel) : this(
             source.readParcelable<ErrorState>(ErrorState::class.java.classLoader),
             source.readParcelable<LoginState>(LoginState::class.java.classLoader),
             source.readParcelable<SensorState>(SensorState::class.java.classLoader)
@@ -33,7 +30,7 @@ data class State(
 
     override fun describeContents() = 0
 
-    override fun writeToParcel(dest: Parcel, flags: Int) {
+    override fun writeToParcel(dest: android.os.Parcel, flags: Int) {
         dest.writeParcelable(errorState, 0)
         dest.writeParcelable(loginState, 0)
         dest.writeParcelable(sensorState, 0)

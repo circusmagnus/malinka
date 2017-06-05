@@ -3,7 +3,11 @@ package pl.wojtach.malinka.state
 import io.reactivex.observers.TestObserver
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import pl.wojtach.malinka.actions.Action
+import pl.wojtach.malinka.statemachine.Action
+import pl.wojtach.malinka.statemachine.StateMachine
+import pl.wojtach.malinka.statemachine.createInitialState
+import pl.wojtach.malinka.statemachine.states.State
+
 
 /**
  * Created by lukaszwojtach on 17.04.2017.
@@ -21,7 +25,7 @@ class StateMachineImplTest {
     @Test
     fun after_dispatch_action_can_get_correct_state() {
         //given
-        val stateMachine: StateMachine<State> = StateMachineImpl(createInitialState())
+        val stateMachine: StateMachine<State> = StateMachine.getInstance(createInitialState())
 
         //when
         stateMachine.dispatch(testAction)
@@ -33,7 +37,7 @@ class StateMachineImplTest {
     @Test
     fun after_dispatching_new_state_does_notify() {
         //given
-        val stateMachine = StateMachineImpl(createInitialState())
+        val stateMachine: StateMachine<State> = StateMachine.getInstance(createInitialState())
 
         val testObserver = TestObserver.create<State>()
 

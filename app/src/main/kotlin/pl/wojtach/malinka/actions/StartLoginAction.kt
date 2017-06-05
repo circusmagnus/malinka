@@ -1,8 +1,10 @@
 package pl.wojtach.malinka.actions
 
-import pl.wojtach.malinka.state.LoginState
-import pl.wojtach.malinka.state.PHASE
-import pl.wojtach.malinka.state.State
+
+import pl.wojtach.malinka.statemachine.Action
+import pl.wojtach.malinka.statemachine.states.LoginState
+import pl.wojtach.malinka.statemachine.states.PHASE
+import pl.wojtach.malinka.statemachine.states.State
 
 class StartLoginAction(val user: String, val password: String) : Action<State> {
     override fun transformState(oldState: State): State {

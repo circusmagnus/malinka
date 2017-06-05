@@ -2,12 +2,12 @@ package pl.wojtach.malinka.ui.main_screen
 
 import android.databinding.ObservableBoolean
 import android.util.Log
-import pl.wojtach.malinka.data.RetrofitProvider
-import pl.wojtach.malinka.data.sensors.SensorRepositoryRetrofit
-import pl.wojtach.malinka.entities.Sensor
-import pl.wojtach.malinka.data.sensors.SensorRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import pl.wojtach.malinka.data.RetrofitProvider
+import pl.wojtach.malinka.data.sensors.SensorRepository
+import pl.wojtach.malinka.data.sensors.SensorRepositoryRetrofit
+import pl.wojtach.malinka.statemachine.entities.Sensor
 
 /**
  * Created by Lukasz on 07.01.2017.

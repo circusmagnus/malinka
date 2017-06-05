@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.entities
+package pl.wojtach.malinka.statemachine.entities
 
 import com.google.gson.annotations.SerializedName
 

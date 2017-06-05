@@ -3,9 +3,10 @@ package pl.wojtach.malinka.actions
 import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
-import pl.wojtach.malinka.state.State
-import pl.wojtach.malinka.state.StateMachine
-import pl.wojtach.malinka.state.createInitialState
+
+import pl.wojtach.malinka.statemachine.StateMachine
+import pl.wojtach.malinka.statemachine.createInitialState
+import pl.wojtach.malinka.statemachine.states.State
 
 /**
  * Created by lukaszwojtach on 04.06.2017.

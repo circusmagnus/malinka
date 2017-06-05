@@ -7,9 +7,11 @@ import pl.wojtach.malinka.actions.LoginErrorAction
 import pl.wojtach.malinka.actions.LoginSuccesAction
 import pl.wojtach.malinka.actions.StartLoginAction
 import pl.wojtach.malinka.data.DataFetcher
-import pl.wojtach.malinka.entities.Sensor
-import pl.wojtach.malinka.state.State
-import pl.wojtach.malinka.state.StateMachine
+import pl.wojtach.malinka.statemachine.StateMachine
+import pl.wojtach.malinka.statemachine.entities.Sensor
+import pl.wojtach.malinka.statemachine.states.State
+
+
 import java.util.concurrent.TimeUnit
 
 /**

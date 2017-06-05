@@ -36,14 +36,11 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:3.6.2'
-    testCompile "org.mockito:mockito-core:2.+"
+    testCompile 'org.mockito:mockito-core:2.+'
     testCompile('org.amshove.kluent:kluent:1.19') {
         exclude group: "org.jetbrains.kotlin"
     }
-
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    //compile 'com.google.code.gson:gson:2.6.1'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     //Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
@@ -64,6 +61,8 @@ dependencies {
 
     //kotlin databinding
     kapt "com.android.databinding:compiler:$gradle_plugin_version"
+
+    compile project(':stateMachine')
 }
 repositories {
     mavenCentral()

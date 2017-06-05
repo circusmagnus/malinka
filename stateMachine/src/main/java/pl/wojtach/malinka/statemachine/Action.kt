@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.actions
+package pl.wojtach.malinka.statemachine
 
 
 /**

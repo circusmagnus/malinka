@@ -2,8 +2,8 @@ package pl.wojtach.malinka.data.sensors
 
 import io.reactivex.Single
 import pl.wojtach.malinka.data.RetrofitProvider
-import pl.wojtach.malinka.entities.Sensor
-import pl.wojtach.malinka.entities.SensorLocation
+import pl.wojtach.malinka.statemachine.entities.Sensor
+import pl.wojtach.malinka.statemachine.entities.SensorLocation
 import retrofit2.http.GET
 import retrofit2.http.Query
 

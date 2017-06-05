@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.entities
+package pl.wojtach.malinka.statemachine.entities
 
 /**
  * Created by Lukasz on 08.01.2017.
