@@ -43,12 +43,16 @@ internal class SensorDataFetcherRetrofit(val stateMachine: StateMachine<State>) 
 
     private fun fetchData() {
         RetrofitProvider
-                .retrofit
+                .getPasswordedRetrofit(getUser(), getPassword())
                 .create(DataProvider::class.java)
                 .getSensors()
                 .subscribeOn(Schedulers.io())
                 .subscribe({ signalSensorsLoaded(it) }, { signalError(it) })
     }
+
+    private fun getPassword() = stateMachine.getState().loginState.currentPassword
+
+    private fun getUser() = stateMachine.getState().loginState.currentUser
 
     private fun signalError(it: Throwable) {
         LoginErrorAction(it.toString())
@@ -57,7 +61,6 @@ internal class SensorDataFetcherRetrofit(val stateMachine: StateMachine<State>) 
     private fun signalSensorsLoaded(sensors: List<Sensor>) {
         stateMachine.dispatch(LoginSuccesAction(sensors))
     }
-
 }
 
 interface DataProvider {
