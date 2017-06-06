@@ -3,9 +3,9 @@ package pl.wojtach.malinka.ui.login
 import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import pl.wojtach.malinka.R
 import pl.wojtach.malinka.Starter
 import pl.wojtach.malinka.databinding.ActivityLoginBinding
-import pl.wojtach.malinka.login.R
 import pl.wojtach.malinka.networking.SensorDataFetcher
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.State
@@ -20,6 +20,7 @@ class LoginActivity : Activity() {
         super.onCreate(savedInstanceState)
         setupStateMachine(savedInstanceState)
         setupDataBinding()
+        setupNetworking()
         setupComponentStarter()
     }
 
@@ -32,7 +33,7 @@ class LoginActivity : Activity() {
     private fun setupDataBinding() {
         val view = DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
         view.model = LoginViewModel(stateMachine)
-        view.dispatcher = LoginActionDispatcher(stateMachine, SensorDataFetcher.withRetrofit())
+        view.dispatcher = LoginActionDispatcher(stateMachine)
     }
 
     private fun setupStateMachine(savedInstanceState: Bundle?) {
@@ -40,6 +41,10 @@ class LoginActivity : Activity() {
                 ?: intent.getParcelableExtra(State.BUNDLE_KEY)
                 ?: throw AssertionError("No state acquired")
         stateMachine = StateMachine.getInstance(state)
+    }
+
+    private fun setupNetworking() {
+        SensorDataFetcher.withRetrofit(stateMachine)
     }
 
     private fun setupComponentStarter() {

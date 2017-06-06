@@ -3,6 +3,8 @@ package pl.wojtach.malinka.statemachine
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
+import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.newSingleThreadContext
 import pl.wojtach.malinka.statemachine.states.State
 
 /**
@@ -31,7 +33,9 @@ internal class StateMachineImpl(initialState: State) : StateMachine<State> {
 
 
     override fun dispatch(action: Action<State>) {
-        currentState = action.transformState(currentState)
+        launch(newSingleThreadContext("Action Thread")) {
+            currentState = action.transformState(currentState)
+        }
     }
 
     override fun getState(): State = currentState
