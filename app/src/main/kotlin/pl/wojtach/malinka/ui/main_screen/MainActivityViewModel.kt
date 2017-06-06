@@ -1,45 +1,50 @@
 package pl.wojtach.malinka.ui.main_screen
 
 import android.databinding.ObservableBoolean
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.RecyclerView
-import android.util.Log
-import pl.wojtach.malinka.data.RetrofitProvider
-import pl.wojtach.malinka.data.sensors.SensorRepositoryRetrofit
-import pl.wojtach.malinka.data.sensors.SensorRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import pl.wojtach.malinka.statemachine.StateMachine
+import pl.wojtach.malinka.statemachine.states.PHASE
+import pl.wojtach.malinka.statemachine.states.State
 
 /**
  * Created by Lukasz on 14.01.2017.
  */
 class MainActivityViewModel(
-        val listAdapter: SensorAdapter,
-        val repository: SensorRepository = SensorRepositoryRetrofit(RetrofitProvider),
-        val layoutManager: RecyclerView.LayoutManager
-) : SwipeRefreshLayout.OnRefreshListener {
+        val stateMachine: StateMachine<State>
+) {
 
     val TAG = MainActivityViewModel::class.java.simpleName
     var isRefreshing = ObservableBoolean(false)
 
-    fun refreshSensorList() {
-        isRefreshing.set(true)
-        repository
-                .getInfoFromSensors()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    listAdapter.sensors.clear()
-                    listAdapter.sensors.addAll(it)
-                    listAdapter.notifyDataSetChanged()
-                    isRefreshing.set(false)
-                }, { error ->
-                    Log.d(TAG, "can`t load data: " + error.message)
-                    isRefreshing.set(false)
-                })
+    init {
+        render(stateMachine.getState())
+        stateMachine.getPublisher()
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe { render(it) }
     }
 
-    override fun onRefresh() {
-        refreshSensorList()
+    fun render(state: State) {
+        isRefreshing.set(state.sensorState.phase == PHASE.IN_PROGRESS)
     }
+
+//    fun refreshSensorList() {
+//        isRefreshing.set(true)
+//        repository
+//                .getInfoFromSensors()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe({
+//                    listAdapter.sensors.clear()
+//                    listAdapter.sensors.addAll(it)
+//                    listAdapter.notifyDataSetChanged()
+//                    isRefreshing.set(false)
+//                }, { error ->
+//                    Log.d(TAG, "can`t load data: " + error.message)
+//                    isRefreshing.set(false)
+//                })
+//    }
+//
+//    override fun onRefresh() {
+//        refreshSensorList()
+//    }
 }

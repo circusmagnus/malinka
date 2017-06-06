@@ -3,27 +3,32 @@ package pl.wojtach.malinka.ui.main_screen
 import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import pl.wojtach.malinka.R
-import pl.wojtach.malinka.data.RetrofitProvider
-import pl.wojtach.malinka.data.sensors.SensorRepositoryRetrofit
 import pl.wojtach.malinka.databinding.ActivityMainBinding
+import pl.wojtach.malinka.statemachine.StateMachine
+import pl.wojtach.malinka.statemachine.states.State
+import pl.wojtach.malinka.ui.setupStateMachine
+
 
 class MainActivity : Activity() {
 
-    val viewModel = MainActivityViewModel(listAdapter = SensorAdapter(mutableListOf()),
-            repository = SensorRepositoryRetrofit(RetrofitProvider),
-            layoutManager = LinearLayoutManager(this))
+//    val viewModel = MainActivityViewModel(listAdapter = SensorAdapter(mutableListOf()),
+//            repository = SensorRepositoryRetrofit(RetrofitProvider),
+//            layoutManager = LinearLayoutManager(this))
+
+    lateinit var stateMachine: StateMachine<State>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        binding.viewModel = viewModel
+        stateMachine = setupStateMachine(savedBundle = savedInstanceState, intent = intent)
+        setupDataBinding()
+//        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+//        binding.viewModel = viewModel
     }
 
-    override fun onStart() {
-        super.onStart()
-        viewModel.refreshSensorList()
+    private fun setupDataBinding() {
+        val view = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        view.viewModel = MainActivityViewModel()
     }
 }
 

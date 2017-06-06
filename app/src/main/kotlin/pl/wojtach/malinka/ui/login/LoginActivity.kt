@@ -9,6 +9,7 @@ import pl.wojtach.malinka.databinding.ActivityLoginBinding
 import pl.wojtach.malinka.networking.SensorDataFetcher
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.State
+import pl.wojtach.malinka.ui.setupStateMachine
 
 
 class LoginActivity : Activity() {
@@ -18,7 +19,7 @@ class LoginActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupStateMachine(savedInstanceState)
+        stateMachine = setupStateMachine(savedBundle = savedInstanceState, intent = intent)
         setupDataBinding()
         setupNetworking()
         setupComponentStarter()
@@ -34,13 +35,6 @@ class LoginActivity : Activity() {
         val view = DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
         view.model = LoginViewModel(stateMachine)
         view.dispatcher = LoginActionDispatcher(stateMachine)
-    }
-
-    private fun setupStateMachine(savedInstanceState: Bundle?) {
-        val state = savedInstanceState?.getParcelable<State>(State.BUNDLE_KEY)
-                ?: intent.getParcelableExtra(State.BUNDLE_KEY)
-                ?: throw AssertionError("No state acquired")
-        stateMachine = StateMachine.getInstance(state)
     }
 
     private fun setupNetworking() {
