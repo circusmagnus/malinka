@@ -6,9 +6,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import pl.wojtach.malinka.R
 import pl.wojtach.malinka.databinding.SensorViewholderBinding
-import pl.wojtach.malinka.statemachine.entities.Sensor
 
-class SensorAdapter(val sensors: MutableList<Sensor>) : RecyclerView.Adapter<SensorAdapter.SensorViewHolder>() {
+class SensorAdapter(sensors: List<SensorViewModel>, sensorClicksDispatcher: SensorClicksDispatcher) : RecyclerView.Adapter<SensorAdapter.SensorViewHolder>() {
+
+    var sensors = sensors
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): SensorViewHolder {
         return SensorViewHolder(
@@ -26,9 +31,10 @@ class SensorAdapter(val sensors: MutableList<Sensor>) : RecyclerView.Adapter<Sen
     }
 
     override fun onBindViewHolder(holder: SensorViewHolder?, position: Int) {
-        holder?.binding?.sensorViewModel = SensorViewModel(sensors[position])
+        holder?.binding?.sensorViewModel = sensors[position]
     }
 
 
     class SensorViewHolder(val binding: SensorViewholderBinding) : RecyclerView.ViewHolder(binding.root)
 }
+

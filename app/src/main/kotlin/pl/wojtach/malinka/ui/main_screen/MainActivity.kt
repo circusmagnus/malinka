@@ -28,7 +28,8 @@ class MainActivity : Activity() {
 
     private fun setupDataBinding() {
         val view = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        view.viewModel = MainActivityViewModel()
+        view.main_model = MainActivityViewModel(stateMachine)
+        view.sensor_list_model = SensorListViewModel(stateMachine, this)
     }
 }
 

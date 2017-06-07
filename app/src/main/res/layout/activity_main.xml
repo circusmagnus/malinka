@@ -7,8 +7,12 @@
     <data>
 
         <variable
-            name="viewModel"
+            name="main_model"
             type="pl.wojtach.malinka.ui.main_screen.MainActivityViewModel" />
+
+        <variable
+            name="sensor_list_model"
+            type="pl.wojtach.malinka.ui.main_screen.SensorListViewModel" />
     </data>
 
     <android.support.v4.widget.SwipeRefreshLayout
@@ -49,8 +53,8 @@
             android:id="@+id/sensor_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:LayoutManager="@{viewModel.layoutManager}"
-            app:adapter="@{viewModel.listAdapter}" />
+            app:LayoutManager="@{sensor_list_model.layoutManager}"
+            app:adapter="@{sensor_list_model.adapter}" />
 
     </LinearLayout>
 
