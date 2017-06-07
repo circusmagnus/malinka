@@ -26,7 +26,7 @@ class EnableSensorAction(val id: String) : Action<State> {
                 .first { it.mac == id }
                 .copy(switchTo = SWITCH_TO.ENABLED)
 
-        return oldState.copy(sensorState = oldState.sensorState.copy(sensors = oldState.sensorState.sensors))
+        return oldState.copy(sensorState = oldState.sensorState.copy(sensors = listOf()))
 
     }
 
