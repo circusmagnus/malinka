@@ -6,6 +6,10 @@
         <variable
             name="sensor_view_model"
             type="pl.wojtach.malinka.ui.main_screen.SensorViewModel" />
+
+        <variable
+            name="sensor_clicks_dispatcher"
+            type="pl.wojtach.malinka.ui.main_screen.SensorClicksDispatcher" />
     </data>
 
     <RelativeLayout
@@ -27,7 +31,7 @@
             android:id="@+id/sensor_switch"
             style="@style/sensor_viewholder_right"
             android:checked="@={sensor_view_model.isActiveObservable}"
-            android:onClick="@{view -> sensor_view_model.setNewStatus()}"
+            android:onClick="@{view -> sensor_clicks_dispatcher}"
             android:visibility="@{sensor_view_model.errorOccuredObservable ? View.INVISIBLE : View.VISIBLE}" />
 
         <TextView

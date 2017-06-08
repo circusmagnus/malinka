@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import pl.wojtach.malinka.R
 import pl.wojtach.malinka.databinding.ActivityMainBinding
+import pl.wojtach.malinka.networking.RemoteSensorToggler
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.State
 import pl.wojtach.malinka.ui.setupStateMachine
@@ -22,8 +23,13 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         stateMachine = setupStateMachine(savedBundle = savedInstanceState, intent = intent)
         setupDataBinding()
+        setupNetowrking()
 //        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 //        binding.viewModel = viewModel
+    }
+
+    private fun setupNetowrking() {
+        RemoteSensorToggler.withRetrofit(stateMachine)
     }
 
     private fun setupDataBinding() {

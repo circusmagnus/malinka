@@ -11,7 +11,7 @@ import pl.wojtach.malinka.statemachine.states.State
  */
 class SensorListViewModel(val stateMachine: StateMachine<State>, context: Context) {
 
-    var adapter = SensorAdapter(emptyList())
+    var adapter = SensorAdapter(emptyList(), SensorClicksDispatcher.getInstance(stateMachine))
     val layoutManager = LinearLayoutManager(context)
 
     init {

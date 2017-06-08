@@ -43,16 +43,12 @@ internal class SensorDataFetcherRetrofit(val stateMachine: StateMachine<State>) 
 
     private fun fetchData() {
         RetrofitProvider
-                .getPasswordedRetrofit(getUser(), getPassword())
+                .getPasswordedRetrofit(stateMachine.getUser(), stateMachine.getPassword())
                 .create(DataProvider::class.java)
                 .getSensors()
                 .subscribeOn(Schedulers.io())
                 .subscribe({ signalSensorsLoaded(it) }, { signalError(it) })
     }
-
-    private fun getPassword() = stateMachine.getState().loginState.currentPassword
-
-    private fun getUser() = stateMachine.getState().loginState.currentUser
 
     private fun signalError(it: Throwable) {
         LoginErrorAction(it.toString())

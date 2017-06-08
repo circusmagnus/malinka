@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import pl.wojtach.malinka.R
 import pl.wojtach.malinka.databinding.SensorViewholderBinding
 
-class SensorAdapter(sensors: List<SensorViewModel>, sensorClicksDispatcher: SensorClicksDispatcher) : RecyclerView.Adapter<SensorAdapter.SensorViewHolder>() {
+class SensorAdapter(sensors: List<SensorViewModel>, val sensorClicksDispatcher: SensorClicksDispatcher) : RecyclerView.Adapter<SensorAdapter.SensorViewHolder>() {
 
     var sensors = sensors
         set(value) {
@@ -31,7 +31,9 @@ class SensorAdapter(sensors: List<SensorViewModel>, sensorClicksDispatcher: Sens
     }
 
     override fun onBindViewHolder(holder: SensorViewHolder?, position: Int) {
-        holder?.binding?.sensorViewModel = sensors[position]
+        holder?.binding?.sensor_view_model = sensors[position]
+        holder?.binding?.sensor_clicks_dispatcher = sensorClicksDispatcher
+
     }
 
 

@@ -28,7 +28,7 @@ class SensorViewModel(stateMachine: StateMachine<State>, val id: String) {
     private fun render(state: State) {
         val sourceSensor = state.sensorState.sensors.first { it.mac == id }
         isActiveObservable.set(sourceSensor.isActive)
-        //errorOccuredObservable.set(sourceSensor.error)
+        errorOccuredObservable.set(sourceSensor.hasError)
         name.set(sourceSensor.name)
         value.set(sourceSensor.lastValue)
         date.set(sourceSensor.lastDate)
