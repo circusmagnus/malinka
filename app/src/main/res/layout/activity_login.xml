@@ -28,6 +28,12 @@
         tools:context="pl.wojtach.malinka.ui.login_screen.LoginActivitySample">
 
         <!-- Login progress -->
+        <TextView
+            android:id="@+id/error_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{model.errorMessage}" />
+
         <ProgressBar
             android:id="@+id/login_progress"
             style="?android:attr/progressBarStyleLarge"

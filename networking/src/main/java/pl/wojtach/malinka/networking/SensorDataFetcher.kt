@@ -51,7 +51,7 @@ internal class SensorDataFetcherRetrofit(val stateMachine: StateMachine<State>) 
     }
 
     private fun signalError(it: Throwable) {
-        LoginErrorAction(it.toString())
+        stateMachine.dispatch(LoginErrorAction(it.toString()))
     }
 
     private fun signalSensorsLoaded(sensors: List<Sensor>) {
