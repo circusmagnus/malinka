@@ -3,7 +3,6 @@ package pl.wojtach.malinka.networking
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import pl.wojtach.malinka.statemachine.StateMachine
-import pl.wojtach.malinka.statemachine.entities.Sensor
 import pl.wojtach.malinka.statemachine.states.PHASE
 import pl.wojtach.malinka.statemachine.states.State
 import retrofit2.http.GET
@@ -54,7 +53,7 @@ internal class SensorDataFetcherRetrofit(val stateMachine: StateMachine<State>) 
         stateMachine.dispatch(LoginErrorAction(it.toString()))
     }
 
-    private fun signalSensorsLoaded(sensors: List<Sensor>) {
+    private fun signalSensorsLoaded(sensors: List<WsSensor>) {
         stateMachine.dispatch(LoginSuccesAction(sensors))
     }
 }
@@ -62,6 +61,6 @@ internal class SensorDataFetcherRetrofit(val stateMachine: StateMachine<State>) 
 interface DataProvider {
 
     @GET("lastStatus")
-    fun getSensors(): Single<List<Sensor>>
+    fun getSensors(): Single<List<WsSensor>>
 
 }

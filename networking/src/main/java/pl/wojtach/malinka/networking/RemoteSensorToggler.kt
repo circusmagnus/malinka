@@ -36,7 +36,7 @@ class RemoteSensorTogglerRetrofit(val stateMachine: StateMachine<State>) : Remot
         RetrofitProvider
                 .getPasswordedRetrofit(stateMachine.getUser(), stateMachine.getPassword())
                 .create(RetrofitSensorToggler::class.java)
-                .setDeviceStatus(macAddres = sensor.mac, type = sensor.type, isActive = if (sensor.isActive) 1 else 0)
+                .setDeviceStatus(macAddres = sensor.mac, type = sensor.type, isActive = if (sensor.switchTo == SWITCH_TO.ENABLED) 1 else 0)
                 .subscribeOn(Schedulers.io())
                 .subscribe({ signalSucces(sensor) }, { signalError(sensor) })
     }
@@ -58,8 +58,8 @@ internal class SetStatusSuccesAction(val sensor: Sensor) : Action<State> {
     override fun transformState(oldState: State): State = oldState.copy(
             sensorState = oldState.sensorState.copy(
                     sensors = oldState.sensorState.sensors.map {
-                        it.takeIf { it.mac == sensor.mac }
-                                ?.copy(switchTo = SWITCH_TO.NO_CHANGE)
+                        it.takeIf { it.mac == sensor.mac && it.type == sensor.type }
+                                ?.copy(switchTo = SWITCH_TO.NO_CHANGE, isActive = sensor.switchTo == SWITCH_TO.ENABLED)
                                 ?: it
                     }
             )

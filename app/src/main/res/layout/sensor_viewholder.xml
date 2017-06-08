@@ -4,7 +4,7 @@
     <data>
         <import type="android.view.View" />
         <variable
-            name="sensor_view_model"
+            name="model"
             type="pl.wojtach.malinka.ui.main_screen.SensorViewModel" />
 
         <variable
@@ -24,21 +24,21 @@
             android:id="@+id/sensor_name"
             style="@style/sensor_viewholder_left"
             android:layout_alignParentTop="true"
-            android:text="@{sensor_view_model.name}"
+            android:text="@{model.name}"
             android:textStyle="bold" />
 
         <Switch
             android:id="@+id/sensor_switch"
             style="@style/sensor_viewholder_right"
-            android:checked="@={sensor_view_model.isActiveObservable}"
-            android:onClick="@{view -> sensor_clicks_dispatcher}"
-            android:visibility="@{sensor_view_model.errorOccuredObservable ? View.INVISIBLE : View.VISIBLE}" />
+            android:checked="@={model.isActiveObservable}"
+            android:onClick="@{view -> sensor_clicks_dispatcher.toggle(view, model.id, model.type)}"
+            android:visibility="@{model.errorOccuredObservable ? View.INVISIBLE : View.VISIBLE}" />
 
         <TextView
             style="@style/sensor_viewholder_right"
             android:background="@android:color/holo_red_light"
             android:text="@string/error_sensor_view_holder"
-            android:visibility="@{sensor_view_model.errorOccuredObservable ? View.VISIBLE : View.GONE}" />
+            android:visibility="@{model.errorOccuredObservable ? View.VISIBLE : View.GONE}" />
 
         <TextView
             android:id="@+id/date_descr"
@@ -51,7 +51,7 @@
             style="@style/sensor_viewholder_right"
             android:layout_alignBaseline="@id/date_descr"
             android:layout_below="@id/sensor_switch"
-            android:text="@{sensor_view_model.date}" />
+            android:text="@{model.date}" />
 
         <TextView
             android:id="@+id/sensor_value_descr"
@@ -64,7 +64,7 @@
             style="@style/sensor_viewholder_right"
             android:layout_alignBaseline="@id/sensor_value_descr"
             android:layout_below="@id/date_field"
-            android:text="@{sensor_view_model.value}" />
+            android:text="@{model.value}" />
 
     </RelativeLayout>
 

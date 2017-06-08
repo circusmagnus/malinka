@@ -10,7 +10,7 @@ import pl.wojtach.malinka.statemachine.states.State
  * Created by Lukasz on 07.01.2017.
  */
 
-class SensorViewModel(stateMachine: StateMachine<State>, val id: String) {
+class SensorViewModel(stateMachine: StateMachine<State>, val id: String, val type: Int) {
 
 
     val isActiveObservable = ObservableBoolean(false)
@@ -26,7 +26,7 @@ class SensorViewModel(stateMachine: StateMachine<State>, val id: String) {
     }
 
     private fun render(state: State) {
-        val sourceSensor = state.sensorState.sensors.first { it.mac == id }
+        val sourceSensor = state.sensorState.sensors.first { it.mac == id && it.type == type }
         isActiveObservable.set(sourceSensor.isActive)
         errorOccuredObservable.set(sourceSensor.hasError)
         name.set(sourceSensor.name)

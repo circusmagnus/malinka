@@ -2,6 +2,7 @@ package pl.wojtach.malinka.ui.login
 
 import android.content.Context
 import android.content.Intent
+import io.reactivex.android.schedulers.AndroidSchedulers
 import pl.wojtach.malinka.Starter
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.PHASE
@@ -15,7 +16,7 @@ import pl.wojtach.malinka.ui.main_screen.MainActivity
 class LoginActivityStarter(val context: Context, val stateMachine: StateMachine<State>) : Starter {
 
     init {
-        stateMachine.getPublisher().subscribe { startComponent(it) }
+        stateMachine.getPublisher().observeOn(AndroidSchedulers.mainThread()).subscribe { startComponent(it) }
     }
 
     override fun startComponent(state: State) {
