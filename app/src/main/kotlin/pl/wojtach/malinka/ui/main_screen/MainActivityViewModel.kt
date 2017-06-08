@@ -1,7 +1,9 @@
 package pl.wojtach.malinka.ui.main_screen
 
 import android.databinding.ObservableBoolean
+import android.support.v4.widget.SwipeRefreshLayout
 import io.reactivex.android.schedulers.AndroidSchedulers
+import pl.wojtach.malinka.statemachine.Action
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.PHASE
 import pl.wojtach.malinka.statemachine.states.State
@@ -9,9 +11,7 @@ import pl.wojtach.malinka.statemachine.states.State
 /**
  * Created by Lukasz on 14.01.2017.
  */
-class MainActivityViewModel(
-        val stateMachine: StateMachine<State>
-) {
+class MainActivityViewModel(val stateMachine: StateMachine<State>) : SwipeRefreshLayout.OnRefreshListener {
 
     val TAG = MainActivityViewModel::class.java.simpleName
     var isRefreshing = ObservableBoolean(false)
@@ -44,7 +44,13 @@ class MainActivityViewModel(
 //                })
 //    }
 //
-//    override fun onRefresh() {
-//        refreshSensorList()
-//    }
+override fun onRefresh() {
+    stateMachine.dispatch(NewSensorsNeededAction())
+}
+}
+
+class NewSensorsNeededAction : Action<State> {
+    override fun transformState(oldState: State): State = oldState.copy(
+            sensorState = oldState.sensorState.copy(phase = PHASE.IN_PROGRESS))
+
 }

@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.actions
+package pl.wojtach.malinka.networking
 
 import org.amshove.kluent.shouldEqual
 import org.junit.Before

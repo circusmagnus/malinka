@@ -23,19 +23,24 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         stateMachine = setupStateMachine(savedBundle = savedInstanceState, intent = intent)
         setupDataBinding()
-        setupNetowrking()
+        setupNetworking()
+        setupComponentStarter()
 //        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 //        binding.viewModel = viewModel
     }
 
-    private fun setupNetowrking() {
+    private fun setupComponentStarter() {
+        MainActivityStarter(context = this, stateMachine = stateMachine)
+    }
+
+    private fun setupNetworking() {
         RemoteSensorToggler.withRetrofit(stateMachine)
     }
 
     private fun setupDataBinding() {
         val view = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        view.main_model = MainActivityViewModel(stateMachine)
-        view.sensor_list_model = SensorListViewModel(stateMachine, this)
+        view.mainModel = MainActivityViewModel(stateMachine)
+        view.sensorListModel = SensorListViewModel(stateMachine, this)
     }
 }
 

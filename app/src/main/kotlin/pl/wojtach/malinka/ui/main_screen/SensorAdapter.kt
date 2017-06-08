@@ -31,8 +31,8 @@ class SensorAdapter(sensors: List<SensorViewModel>, val sensorClicksDispatcher: 
     }
 
     override fun onBindViewHolder(holder: SensorViewHolder?, position: Int) {
-        holder?.binding?.sensor_view_model = sensors[position]
-        holder?.binding?.sensor_clicks_dispatcher = sensorClicksDispatcher
+        holder?.binding?.sensorViewModel = sensors[position]
+        holder?.binding?.sensorClicksDispatcher = sensorClicksDispatcher
 
     }
 
