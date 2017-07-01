@@ -14,7 +14,7 @@ data class Sensor(
         val lastValue: String,
         val lastDate: String,
         val hasError: Boolean,
-        val switchTo: SWITCH_TO
+        val shouldSync: Boolean
 ) : Parcelable {
     companion object {
         @JvmField val CREATOR: Parcelable.Creator<Sensor> = object : Parcelable.Creator<Sensor> {
@@ -31,7 +31,7 @@ data class Sensor(
             source.readString(),
             source.readString(),
             1 == source.readInt(),
-            SWITCH_TO.values()[source.readInt()]
+            1 == source.readInt()
     )
 
     override fun describeContents() = 0
@@ -44,7 +44,7 @@ data class Sensor(
         dest.writeString(lastValue)
         dest.writeString(lastDate)
         dest.writeInt((if (hasError) 1 else 0))
-        dest.writeInt(switchTo.ordinal)
+        dest.writeInt((if (shouldSync) 1 else 0))
     }
 }
 

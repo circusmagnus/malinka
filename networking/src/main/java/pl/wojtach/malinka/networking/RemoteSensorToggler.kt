@@ -4,7 +4,6 @@ import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import pl.wojtach.malinka.statemachine.Action
 import pl.wojtach.malinka.statemachine.StateMachine
-import pl.wojtach.malinka.statemachine.entities.SWITCH_TO
 import pl.wojtach.malinka.statemachine.entities.Sensor
 import pl.wojtach.malinka.statemachine.states.State
 import retrofit2.http.GET
@@ -28,7 +27,7 @@ class RemoteSensorTogglerRetrofit(val stateMachine: StateMachine<State>) : Remot
 
     private fun scan(state: State) {
         state.sensorState.sensors
-                .filter { it.switchTo != SWITCH_TO.NO_CHANGE }
+                .filter { it.shouldSync == true }
                 .forEach { changeStatus(it) }
     }
 
@@ -36,7 +35,7 @@ class RemoteSensorTogglerRetrofit(val stateMachine: StateMachine<State>) : Remot
         RetrofitProvider
                 .getPasswordedRetrofit(stateMachine.getUser(), stateMachine.getPassword())
                 .create(RetrofitSensorToggler::class.java)
-                .setDeviceStatus(macAddres = sensor.mac, type = sensor.type, isActive = if (sensor.switchTo == SWITCH_TO.ENABLED) 1 else 0)
+                .setDeviceStatus(macAddres = sensor.mac, type = sensor.type, isActive = if (sensor.isActive) 1 else 0)
                 .subscribeOn(Schedulers.io())
                 .subscribe({ signalSucces(sensor) }, { signalError(sensor) })
     }
@@ -59,7 +58,7 @@ internal class SetStatusSuccesAction(val sensor: Sensor) : Action<State> {
             sensorState = oldState.sensorState.copy(
                     sensors = oldState.sensorState.sensors.map {
                         it.takeIf { it.mac == sensor.mac && it.type == sensor.type }
-                                ?.copy(switchTo = SWITCH_TO.NO_CHANGE, isActive = sensor.switchTo == SWITCH_TO.ENABLED)
+                                ?.copy(shouldSync = false)
                                 ?: it
                     }
             )

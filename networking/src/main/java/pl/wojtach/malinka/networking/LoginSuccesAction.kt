@@ -1,7 +1,6 @@
 package pl.wojtach.malinka.networking
 
 import pl.wojtach.malinka.statemachine.Action
-import pl.wojtach.malinka.statemachine.entities.SWITCH_TO
 import pl.wojtach.malinka.statemachine.entities.Sensor
 import pl.wojtach.malinka.statemachine.states.PHASE
 import pl.wojtach.malinka.statemachine.states.State
@@ -24,7 +23,7 @@ internal class LoginSuccesAction(val sensors: List<WsSensor>) : Action<State> {
                 lastDate = it.lastDate,
                 lastValue = it.lastValue,
                 hasError = false,
-                switchTo = SWITCH_TO.NO_CHANGE)
+                shouldSync = false)
     }
 }
 

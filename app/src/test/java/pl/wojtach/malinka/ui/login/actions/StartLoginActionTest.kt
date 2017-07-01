@@ -1,7 +1,6 @@
 package pl.wojtach.malinka.ui.login.actions
 
 import org.amshove.kluent.shouldEqual
-import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.createInitialState
 import pl.wojtach.malinka.statemachine.states.LoginState
 import pl.wojtach.malinka.statemachine.states.PHASE
@@ -17,13 +16,11 @@ class StartLoginActionTest {
     fun transformState() {
         //given
         val oldState = createInitialState()
-        val stateMachine = StateMachine.getInstance(createInitialState())
         val user = "abc"
         val password = "123"
 
         //when
-        stateMachine.dispatch(StartLoginAction(user, password))
-        val resultState = stateMachine.getState()
+        val resultState = StartLoginAction(user, password).transformState(oldState)
 
         //then
         resultState shouldEqual createInitialState().copy(loginState = LoginState(

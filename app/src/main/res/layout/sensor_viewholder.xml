@@ -31,7 +31,7 @@
             android:id="@+id/sensor_switch"
             style="@style/sensor_viewholder_right"
             android:checked="@={model.isActiveObservable}"
-            android:onClick="@{view -> sensor_clicks_dispatcher.toggle(view, model.id, model.type)}"
+            android:onClick="@{view -> sensor_clicks_dispatcher.toggle(model.id, model.type)}"
             android:visibility="@{model.errorOccuredObservable ? View.INVISIBLE : View.VISIBLE}" />
 
         <TextView
