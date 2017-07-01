@@ -11,6 +11,10 @@
             type="pl.wojtach.malinka.ui.main_screen.MainActivityViewModel" />
 
         <variable
+            name="dispatcher"
+            type="pl.wojtach.malinka.ui.main_screen.MainScreenDispatcher" />
+
+        <variable
             name="sensor_list_model"
             type="pl.wojtach.malinka.ui.main_screen.SensorListViewModel" />
     </data>
@@ -32,6 +36,13 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="pl.wojtach.malinka.ui.main_screen.MainActivity">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:onClick="@{view -> dispatcher.toggleOn()}" />
 
         <TextView
             android:layout_width="wrap_content"

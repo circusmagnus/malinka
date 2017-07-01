@@ -7,8 +7,7 @@ data class State(
         val errorState: ErrorState?,
         val loginState: LoginState,
         val sensorState: SensorState
-        //val mainScreenState: MainScreenState,
-        //val enviromentState: EnviromentState
+
 )
 
 //Parcelable impl below

@@ -43,6 +43,7 @@ class MainActivity : Activity() {
         val view = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         view.mainModel = MainActivityViewModel(stateMachine)
         view.sensorListModel = SensorListViewModel(stateMachine, this)
+        view.dispatcher = MainScreenDispatcher(stateMachine)
     }
 }
 
