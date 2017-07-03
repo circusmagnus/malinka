@@ -54,7 +54,6 @@ internal object RetrofitProvider {
                 "Authorization", String.format("Basic %s", Base64.encodeToString(
                 String.format("%s:%s", loginData.user, loginData.password).toByteArray(), Base64.NO_WRAP)
         )
-
         )
                 .build()
         chain.proceed(request)

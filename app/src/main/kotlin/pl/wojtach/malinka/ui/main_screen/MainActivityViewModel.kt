@@ -27,23 +27,6 @@ class MainActivityViewModel(val stateMachine: StateMachine<State>) : SwipeRefres
         isRefreshing.set(state.sensorState.phase == PHASE.IN_PROGRESS)
     }
 
-//    fun refreshSensorList() {
-//        isRefreshing.set(true)
-//        repository
-//                .getInfoFromSensors()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe({
-//                    listAdapter.sensors.clear()
-//                    listAdapter.sensors.addAll(it)
-//                    listAdapter.notifyDataSetChanged()
-//                    isRefreshing.set(false)
-//                }, { error ->
-//                    Log.d(TAG, "can`t load data: " + error.message)
-//                    isRefreshing.set(false)
-//                })
-//    }
-//
 override fun onRefresh() {
     stateMachine.dispatch(NewSensorsNeededAction())
 }
