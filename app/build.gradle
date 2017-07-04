@@ -41,22 +41,18 @@ dependencies {
         exclude group: "org.jetbrains.kotlin"
     }
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-
     //Reactive stuff
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.0.8'
-
     //RecyclerView
     compile "com.android.support:recyclerview-v7:$supportLibrariesVersion"
-
     //Support to avoid duplication
     compile "com.android.support:support-v4:$supportLibrariesVersion"
-
     //kotlin databinding
     kapt "com.android.databinding:compiler:$gradle_plugin_version"
-
     compile project(':stateMachine')
     compile project(':networking')
+    compile project(':cache')
 }
 repositories {
     mavenCentral()
