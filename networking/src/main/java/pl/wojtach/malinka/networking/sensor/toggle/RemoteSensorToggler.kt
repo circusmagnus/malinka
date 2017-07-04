@@ -5,7 +5,6 @@ import io.reactivex.schedulers.Schedulers
 import pl.wojtach.malinka.networking.RetrofitProvider
 import pl.wojtach.malinka.networking.getPassword
 import pl.wojtach.malinka.networking.getUser
-import pl.wojtach.malinka.statemachine.Action
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.entities.Sensor
 import pl.wojtach.malinka.statemachine.states.State
@@ -51,34 +50,6 @@ class RemoteSensorTogglerRetrofit(val stateMachine: StateMachine<State>) : Remot
     private fun signalSucces(sensor: Sensor) {
         stateMachine.dispatch(SetStatusSuccesAction(sensor))
     }
-
-
-}
-
-internal class SetStatusSuccesAction(val sensor: Sensor) : Action<State> {
-
-    override fun transformState(oldState: State): State = oldState.copy(
-            sensorState = oldState.sensorState.copy(
-                    sensors = oldState.sensorState.sensors.map {
-                        it.takeIf { it.mac == sensor.mac && it.type == sensor.type }
-                                ?.copy(shouldSync = false)
-                                ?: it
-                    }
-            )
-    )
-
-}
-
-internal class SetStatusErrorAction(val sensor: Sensor) : Action<State> {
-    override fun transformState(oldState: State): State = oldState.copy(
-            sensorState = oldState.sensorState.copy(
-                    sensors = oldState.sensorState.sensors.map {
-                        it.takeIf { it.mac == sensor.mac }
-                                ?.copy(hasError = true)
-                                ?: it
-                    }
-            )
-    )
 
 
 }

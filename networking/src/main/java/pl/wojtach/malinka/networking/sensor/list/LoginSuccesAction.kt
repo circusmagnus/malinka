@@ -1,5 +1,6 @@
-package pl.wojtach.malinka.networking
+package pl.wojtach.malinka.networking.sensor.list
 
+import pl.wojtach.malinka.networking.WsSensor
 import pl.wojtach.malinka.statemachine.Action
 import pl.wojtach.malinka.statemachine.entities.Sensor
 import pl.wojtach.malinka.statemachine.states.PHASE

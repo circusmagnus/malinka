@@ -6,7 +6,7 @@ import android.os.Bundle
 import pl.wojtach.malinka.R
 import pl.wojtach.malinka.Starter
 import pl.wojtach.malinka.databinding.ActivityLoginBinding
-import pl.wojtach.malinka.networking.SensorDataFetcher
+import pl.wojtach.malinka.networking.sensor.list.SensorDataFetcher
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.State
 import pl.wojtach.malinka.ui.setupStateMachine

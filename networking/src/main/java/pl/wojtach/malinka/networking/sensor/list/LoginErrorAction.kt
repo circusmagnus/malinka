@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.networking
+package pl.wojtach.malinka.networking.sensor.list
 
 
 internal class LoginErrorAction(val errorMessage: String) : pl.wojtach.malinka.statemachine.Action<pl.wojtach.malinka.statemachine.states.State> {

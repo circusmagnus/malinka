@@ -1,7 +1,11 @@
-package pl.wojtach.malinka.networking
+package pl.wojtach.malinka.networking.sensor.list
 
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import pl.wojtach.malinka.networking.RetrofitProvider
+import pl.wojtach.malinka.networking.WsSensor
+import pl.wojtach.malinka.networking.getPassword
+import pl.wojtach.malinka.networking.getUser
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.PHASE
 import pl.wojtach.malinka.statemachine.states.State
@@ -41,8 +45,7 @@ internal class SensorDataFetcherRetrofit(val stateMachine: StateMachine<State>) 
     }
 
     private fun fetchData() {
-        RetrofitProvider
-                .getPasswordedRetrofit(stateMachine.getUser(), stateMachine.getPassword())
+        RetrofitProvider.getPasswordedRetrofit(stateMachine.getUser(), stateMachine.getPassword())
                 .create(DataProvider::class.java)
                 .getSensors()
                 .subscribeOn(Schedulers.io())

@@ -33,24 +33,4 @@ class SensorViewModel(stateMachine: StateMachine<State>, val id: String, val typ
         value.set(sourceSensor.lastValue)
         date.set(sourceSensor.lastDate)
     }
-
-//
-//    fun setNewStatus() {
-//        val newSensorStatus = sensor.copy(isActive = isActiveObservable.get())
-//        repository
-//                .setSensorStatus(newSensorStatus)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(
-//                        { success ->
-//                            sensor.apply { isActive = newSensorStatus.isActive }
-//                            isActiveObservable.set(sensor.isActive)
-//                            errorOccuredObservable.set(false)
-//                        },
-//                        { error ->
-//                            Log.d(TAG, error.message)
-//                            isActiveObservable.set(sensor.isActive)
-//                            errorOccuredObservable.set(true)
-//                        })
-//    }
 }

@@ -5,7 +5,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import pl.wojtach.malinka.R
 import pl.wojtach.malinka.databinding.ActivityMainBinding
-import pl.wojtach.malinka.networking.SensorDataFetcher
+import pl.wojtach.malinka.networking.sensor.list.SensorDataFetcher
 import pl.wojtach.malinka.networking.sensor.toggle.RemoteSensorToggler
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.State
@@ -14,9 +14,6 @@ import pl.wojtach.malinka.ui.setupStateMachine
 
 class MainActivity : Activity() {
 
-//    val viewModel = MainActivityViewModel(listAdapter = SensorAdapter(mutableListOf()),
-//            repository = SensorRepositoryRetrofit(RetrofitProvider),
-//            layoutManager = LinearLayoutManager(this))
 
     lateinit var stateMachine: StateMachine<State>
 
@@ -26,8 +23,6 @@ class MainActivity : Activity() {
         setupDataBinding()
         setupNetworking()
         setupComponentStarter()
-//        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-//        binding.viewModel = viewModel
     }
 
     private fun setupComponentStarter() {
