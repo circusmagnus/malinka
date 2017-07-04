@@ -3,6 +3,7 @@ package pl.wojtach.malinka.ui.login
 import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import pl.wojtach.cache.LoginWriter
 import pl.wojtach.malinka.R
 import pl.wojtach.malinka.Starter
 import pl.wojtach.malinka.databinding.ActivityLoginBinding
@@ -23,6 +24,7 @@ class LoginActivity : Activity() {
         setupDataBinding()
         setupNetworking()
         setupComponentStarter()
+        setupCache()
     }
 
 
@@ -43,5 +45,9 @@ class LoginActivity : Activity() {
 
     private fun setupComponentStarter() {
         starter = LoginActivityStarter(context = this, stateMachine = stateMachine)
+    }
+
+    private fun setupCache() {
+        LoginWriter.newInstance(stateMachine, applicationContext)
     }
 }

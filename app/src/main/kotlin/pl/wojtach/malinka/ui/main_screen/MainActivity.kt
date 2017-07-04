@@ -3,6 +3,7 @@ package pl.wojtach.malinka.ui.main_screen
 import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import pl.wojtach.cache.CachedLoginPerformer
 import pl.wojtach.malinka.R
 import pl.wojtach.malinka.databinding.ActivityMainBinding
 import pl.wojtach.malinka.networking.list.SensorDataFetcher
@@ -22,6 +23,7 @@ class MainActivity : Activity() {
         stateMachine = setupStateMachine(savedBundle = savedInstanceState, intent = intent)
         setupDataBinding()
         setupNetworking()
+        setupCache()
         setupComponentStarter()
     }
 
@@ -43,6 +45,10 @@ class MainActivity : Activity() {
         val view = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         view.mainModel = MainActivityViewModel(stateMachine)
         view.sensorListModel = SensorListViewModel(stateMachine, this)
+    }
+
+    private fun setupCache() {
+        CachedLoginPerformer.newInstance(stateMachine, applicationContext)
     }
 }
 

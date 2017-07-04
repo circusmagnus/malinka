@@ -19,7 +19,7 @@ class MainActivityStarter(val context: Context, val stateMachine: StateMachine<S
     }
 
     override fun startComponent(state: State) {
-        if (state.loginState.phaseOfLogging == PHASE.NOT_STARTED) context.startActivity(createLoginActivityIntent())
+        if (state.loginState.phaseOfLogging == PHASE.FAILED) context.startActivity(createLoginActivityIntent())
     }
 
     private fun createLoginActivityIntent() = Intent(context, LoginActivity::class.java)

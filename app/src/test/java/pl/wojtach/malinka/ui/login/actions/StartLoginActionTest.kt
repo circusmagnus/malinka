@@ -1,6 +1,7 @@
 package pl.wojtach.malinka.ui.login.actions
 
 import org.amshove.kluent.shouldEqual
+import pl.wojtach.cache.StartLoginAction
 import pl.wojtach.malinka.statemachine.createInitialState
 import pl.wojtach.malinka.statemachine.states.LoginState
 import pl.wojtach.malinka.statemachine.states.PHASE

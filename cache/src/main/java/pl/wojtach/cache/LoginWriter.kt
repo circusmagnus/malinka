@@ -34,7 +34,7 @@ internal class SharedPrefsLoginWriter(stateMachine: StateMachine<State>, val con
     private fun scan(state: State) {
         state
                 .takeIf { it.loginState.phaseOfLogging == PHASE.IN_PROGRESS }
-                ?.let { with(getPrefsEditor()) { saveCredentials(state) } }
+                ?.let { with(getPrefsEditor()) { saveCredentials(it) } }
     }
 
     private fun SharedPreferences.Editor.saveCredentials(state: State) {
