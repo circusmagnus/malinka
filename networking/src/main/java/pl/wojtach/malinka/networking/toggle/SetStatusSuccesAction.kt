@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.networking.sensor.toggle
+package pl.wojtach.malinka.networking.toggle
 
 import pl.wojtach.malinka.statemachine.Action
 import pl.wojtach.malinka.statemachine.entities.Sensor

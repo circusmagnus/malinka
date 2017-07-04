@@ -1,9 +1,10 @@
-package pl.wojtach.malinka.networking.sensor.list
+package pl.wojtach.malinka.networking.list
 
 import pl.wojtach.malinka.networking.WsSensor
 import pl.wojtach.malinka.statemachine.Action
 import pl.wojtach.malinka.statemachine.entities.Sensor
 import pl.wojtach.malinka.statemachine.states.PHASE
+import pl.wojtach.malinka.statemachine.states.SensorState
 import pl.wojtach.malinka.statemachine.states.State
 
 
@@ -11,7 +12,7 @@ internal class LoginSuccesAction(val sensors: List<WsSensor>) : Action<State> {
     override fun transformState(oldState: State): State {
         return oldState.copy(
                 loginState = oldState.loginState.copy(phaseOfLogging = PHASE.FINISHED),
-                sensorState = pl.wojtach.malinka.statemachine.states.SensorState(phase = PHASE.FINISHED, sensors = sensors.convertToEntity())
+                sensorState = SensorState(phase = PHASE.FINISHED, sensors = sensors.convertToEntity())
         )
     }
 

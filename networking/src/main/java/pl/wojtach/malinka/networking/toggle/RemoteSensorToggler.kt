@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.networking.sensor.toggle
+package pl.wojtach.malinka.networking.toggle
 
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers

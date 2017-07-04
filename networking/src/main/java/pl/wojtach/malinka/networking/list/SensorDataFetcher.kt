@@ -1,4 +1,4 @@
-package pl.wojtach.malinka.networking.sensor.list
+package pl.wojtach.malinka.networking.list
 
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
