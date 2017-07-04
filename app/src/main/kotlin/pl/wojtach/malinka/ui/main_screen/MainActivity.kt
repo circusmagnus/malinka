@@ -25,6 +25,11 @@ class MainActivity : Activity() {
         setupComponentStarter()
     }
 
+    override fun onSaveInstanceState(outState: Bundle?) {
+        outState?.putParcelable(State.BUNDLE_KEY, stateMachine.getState())
+        super.onSaveInstanceState(outState)
+    }
+
     private fun setupComponentStarter() {
         MainActivityStarter(context = this, stateMachine = stateMachine)
     }
