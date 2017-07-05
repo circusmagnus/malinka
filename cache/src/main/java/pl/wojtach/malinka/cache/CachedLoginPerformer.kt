@@ -1,7 +1,8 @@
-package pl.wojtach.cache
+package pl.wojtach.malinka.cache
 
 import android.content.Context
 import io.reactivex.schedulers.Schedulers
+import pl.wojtach.malinka.statemachine.StartLoginAction
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.PHASE
 import pl.wojtach.malinka.statemachine.states.State

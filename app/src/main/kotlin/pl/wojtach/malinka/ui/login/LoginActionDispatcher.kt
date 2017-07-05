@@ -1,7 +1,7 @@
 package pl.wojtach.malinka.ui.login
 
 import android.widget.TextView
-import pl.wojtach.cache.StartLoginAction
+import pl.wojtach.malinka.statemachine.StartLoginAction
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.State
 

@@ -1,4 +1,4 @@
-package pl.wojtach.cache
+package pl.wojtach.malinka.cache
 
 import android.content.Context
 import android.content.SharedPreferences

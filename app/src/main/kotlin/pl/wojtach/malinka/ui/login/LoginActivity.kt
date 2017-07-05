@@ -3,9 +3,9 @@ package pl.wojtach.malinka.ui.login
 import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import pl.wojtach.cache.LoginWriter
 import pl.wojtach.malinka.R
 import pl.wojtach.malinka.Starter
+import pl.wojtach.malinka.cache.LoginWriter
 import pl.wojtach.malinka.databinding.ActivityLoginBinding
 import pl.wojtach.malinka.networking.list.SensorDataFetcher
 import pl.wojtach.malinka.statemachine.StateMachine

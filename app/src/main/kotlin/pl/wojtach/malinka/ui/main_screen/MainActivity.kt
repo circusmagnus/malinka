@@ -3,15 +3,14 @@ package pl.wojtach.malinka.ui.main_screen
 import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import pl.wojtach.cache.CachedLoginPerformer
 import pl.wojtach.malinka.R
+import pl.wojtach.malinka.cache.CachedLoginPerformer
 import pl.wojtach.malinka.databinding.ActivityMainBinding
 import pl.wojtach.malinka.networking.list.SensorDataFetcher
 import pl.wojtach.malinka.networking.toggle.RemoteSensorToggler
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.State
 import pl.wojtach.malinka.ui.setupStateMachine
-
 
 class MainActivity : Activity() {
 
