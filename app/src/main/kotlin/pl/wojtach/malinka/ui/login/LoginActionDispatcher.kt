@@ -12,9 +12,12 @@ import pl.wojtach.malinka.statemachine.states.State
 
 internal class LoginActionDispatcher(val stateMachine: StateMachine<State>) {
 
-    fun login(userField: TextView, passwordField: TextView) =
+    fun login(userField: TextView, passwordField: TextView, baseUrlField: TextView) =
             stateMachine.dispatch(
-                    StartLoginAction(userField.text.toString(), passwordField.text.toString())
+                    StartLoginAction(
+                            userField.text.toString(),
+                            passwordField.text.toString(),
+                            baseUrlField.text.toString())
             )
 }
 

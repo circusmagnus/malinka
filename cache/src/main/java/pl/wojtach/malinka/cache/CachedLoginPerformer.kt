@@ -20,6 +20,7 @@ interface CachedLoginPerformer {
 
 internal class SharedPrefsLoginPerformer(val stateMachine: StateMachine<State>, val context: Context) : CachedLoginPerformer {
     init {
+        scan(stateMachine.getState())
         stateMachine.getPublisher()
                 .subscribeOn(Schedulers.io())
                 .subscribe { scan(it) }
@@ -32,7 +33,8 @@ internal class SharedPrefsLoginPerformer(val stateMachine: StateMachine<State>, 
                     with(sharedPreferences(), {
                         val user = getString(SharedPrefsLoginWriter.userKey, "")
                         val password = getString(SharedPrefsLoginWriter.passwordKey, "")
-                        stateMachine.dispatch(StartLoginAction(user, password))
+                        val baseUrl = getString(SharedPrefsLoginWriter.baseUrlKey, "http://smarthomeproject.mybluemix.net/api/")
+                        stateMachine.dispatch(StartLoginAction(user, password, baseUrl))
                     })
                 }
 

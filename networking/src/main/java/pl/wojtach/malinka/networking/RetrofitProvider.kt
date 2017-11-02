@@ -15,9 +15,10 @@ internal object RetrofitProvider {
 
     val retrofit = provideRetrofit(provideClient(), provideGson())
 
-    fun getPasswordedRetrofit(user: String, password: String): Retrofit =
+    fun getPasswordedRetrofit(user: String, password: String, baseUrl: String): Retrofit =
             retrofit
                     .newBuilder()
+                    .baseUrl(baseUrl)
                     .client(provideClient(LoginData(user, password)))
                     .build()
 

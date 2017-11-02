@@ -9,7 +9,8 @@ import android.os.Parcelable
 data class LoginState(
         val phaseOfLogging: PHASE,
         val currentUser: String,
-        val currentPassword: String
+        val currentPassword: String,
+        val currentBaseUrl: String
 ) : Parcelable {
     companion object {
         @JvmField val CREATOR: Parcelable.Creator<LoginState> = object : Parcelable.Creator<LoginState> {
@@ -21,6 +22,7 @@ data class LoginState(
     constructor(source: Parcel) : this(
             PHASE.values()[source.readInt()],
             source.readString(),
+            source.readString(),
             source.readString()
     )
 
@@ -30,5 +32,6 @@ data class LoginState(
         dest.writeInt(phaseOfLogging.ordinal)
         dest.writeString(currentUser)
         dest.writeString(currentPassword)
+        dest.writeString(currentBaseUrl)
     }
 }

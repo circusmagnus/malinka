@@ -23,6 +23,7 @@ internal class SharedPrefsLoginWriter(stateMachine: StateMachine<State>, val con
         const val sharedPrefsName = "Malinka"
         const val userKey = "user"
         const val passwordKey = "password"
+        const val baseUrlKey = "base_url"
     }
 
     init {
@@ -40,6 +41,8 @@ internal class SharedPrefsLoginWriter(stateMachine: StateMachine<State>, val con
     private fun SharedPreferences.Editor.saveCredentials(state: State) {
         putString(userKey, state.loginState.currentUser)
         putString(passwordKey, state.loginState.currentPassword)
+        putString(baseUrlKey, state.loginState.currentBaseUrl)
+
         apply()
     }
 

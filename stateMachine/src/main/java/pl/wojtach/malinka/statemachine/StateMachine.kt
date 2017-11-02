@@ -1,5 +1,6 @@
 package pl.wojtach.malinka.statemachine
 
+import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
@@ -27,6 +28,7 @@ internal class StateMachineImpl(initialState: State) : StateMachine<State> {
 
     private var currentState: State = initialState
         set(value) {
+            Log.d(this::class.java.simpleName, "State progressed to = $value")
             field = value
             publisher.onNext(field)
         }

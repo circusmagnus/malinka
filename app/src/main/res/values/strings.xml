@@ -24,4 +24,5 @@
         completions."
     </string>
     <string name="user_name">Nazwa</string>
+    <string name="base_url_hint">Base url</string>
 </resources>
