@@ -25,4 +25,5 @@
     </string>
     <string name="user_name">Nazwa</string>
     <string name="base_url_hint">Base url</string>
+    <string name="login_menu_text">Login</string>
 </resources>
