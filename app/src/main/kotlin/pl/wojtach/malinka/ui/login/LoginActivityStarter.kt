@@ -16,6 +16,7 @@ import pl.wojtach.malinka.ui.main_screen.MainActivity
 class LoginActivityStarter(val context: Context, val stateMachine: StateMachine<State>) : Starter {
 
     init {
+        stateMachine.getState().let { startComponent(it) }
         stateMachine.getPublisher().observeOn(AndroidSchedulers.mainThread()).subscribe { startComponent(it) }
     }
 

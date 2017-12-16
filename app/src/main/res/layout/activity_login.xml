@@ -74,13 +74,25 @@
                     android:maxLines="1"
                     android:text="@{model.password}" />
 
+                <EditText
+                    android:id="@+id/baseUrl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/base_url_hint"
+                    android:imeActionId="@+id/login"
+                    android:imeActionLabel="@string/base_url_hint"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textUri"
+                    android:maxLines="3"
+                    android:text="@{model.baseUrl}" />
+
                 <Button
                     android:id="@+id/email_sign_in_button"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:onClick="@{() -> dispatcher.login(user, password)}"
+                    android:onClick="@{() -> dispatcher.login(user, password, baseUrl)}"
                     android:text="@string/action_sign_in"
                     android:textStyle="bold" />
 

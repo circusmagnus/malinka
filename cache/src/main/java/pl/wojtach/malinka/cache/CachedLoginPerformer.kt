@@ -1,6 +1,7 @@
 package pl.wojtach.malinka.cache
 
 import android.content.Context
+import io.reactivex.schedulers.Schedulers
 import pl.wojtach.malinka.statemachine.StartLoginAction
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.PHASE
@@ -20,6 +21,9 @@ interface CachedLoginPerformer {
 internal class SharedPrefsLoginPerformer(val stateMachine: StateMachine<State>, val context: Context) : CachedLoginPerformer {
     init {
         scan(stateMachine.getState())
+        stateMachine.getPublisher()
+                .subscribeOn(Schedulers.io())
+                .subscribe { scan(it) }
     }
 
     private fun scan(state: State) {
@@ -29,7 +33,8 @@ internal class SharedPrefsLoginPerformer(val stateMachine: StateMachine<State>, 
                     with(sharedPreferences(), {
                         val user = getString(SharedPrefsLoginWriter.userKey, "")
                         val password = getString(SharedPrefsLoginWriter.passwordKey, "")
-                        stateMachine.dispatch(StartLoginAction(user, password))
+                        val baseUrl = getString(SharedPrefsLoginWriter.baseUrlKey, "http://smarthomeproject.mybluemix.net/api/")
+                        stateMachine.dispatch(StartLoginAction(user, password, baseUrl))
                     })
                 }
 

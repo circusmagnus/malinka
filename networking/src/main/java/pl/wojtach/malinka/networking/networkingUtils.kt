@@ -9,3 +9,5 @@ import pl.wojtach.malinka.statemachine.states.State
 internal fun StateMachine<State>.getPassword() = getState().loginState.currentPassword
 
 internal fun StateMachine<State>.getUser() = getState().loginState.currentUser
+
+internal fun StateMachine<State>.getBaseUrl() = getState().loginState.currentBaseUrl

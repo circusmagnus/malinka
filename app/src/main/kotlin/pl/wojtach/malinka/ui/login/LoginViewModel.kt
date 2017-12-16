@@ -12,11 +12,12 @@ import pl.wojtach.malinka.statemachine.states.State
  */
 internal class LoginViewModel(stateMachine: StateMachine<State>) {
 
-    var isInProgress = ObservableField(View.INVISIBLE)
-    var user = ObservableField("")
-    var password = ObservableField("")
-    var errorMessage: ObservableField<String?> = ObservableField(null)
-    var errorMessageVisible = ObservableField(View.INVISIBLE)
+    val isInProgress = ObservableField(View.INVISIBLE)
+    val user = ObservableField("")
+    val password = ObservableField("")
+    val errorMessage: ObservableField<String?> = ObservableField(null)
+    val errorMessageVisible = ObservableField(View.INVISIBLE)
+    val baseUrl = ObservableField("")
 
     init {
         render(stateMachine.getState())
@@ -27,8 +28,10 @@ internal class LoginViewModel(stateMachine: StateMachine<State>) {
         isInProgress.set(determineProgressVisibility(state))
         user.set(state.loginState.currentUser)
         password.set(state.loginState.currentPassword)
+        // error = ObservableField(stateMachine.getState().errorState != null )
         errorMessage.set(state.errorState?.errorMessages?.firstOrNull() ?: "")
         errorMessageVisible.set(determineErrorVisiblity(state))
+        baseUrl.set(state.loginState.currentBaseUrl)
     }
 
     private fun determineErrorVisiblity(state: State): Int? =

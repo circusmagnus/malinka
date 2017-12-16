@@ -3,6 +3,7 @@ package pl.wojtach.malinka.networking.toggle
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import pl.wojtach.malinka.networking.RetrofitProvider
+import pl.wojtach.malinka.networking.getBaseUrl
 import pl.wojtach.malinka.networking.getPassword
 import pl.wojtach.malinka.networking.getUser
 import pl.wojtach.malinka.statemachine.StateMachine
@@ -35,7 +36,7 @@ class RemoteSensorTogglerRetrofit(val stateMachine: StateMachine<State>) : Remot
     }
 
     private fun changeStatus(sensor: Sensor) {
-        RetrofitProvider.getPasswordedRetrofit(stateMachine.getUser(), stateMachine.getPassword())
+        RetrofitProvider.getPasswordedRetrofit(stateMachine.getUser(), stateMachine.getPassword(), stateMachine.getBaseUrl())
                 .create(RetrofitSensorToggler::class.java)
                 .setDeviceStatus(macAddres = sensor.mac, type = sensor.type, isActive = if (sensor.isActive) 1 else 0)
                 .subscribeOn(Schedulers.io())

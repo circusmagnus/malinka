@@ -14,7 +14,8 @@ fun createInitialState() = State(
         loginState = LoginState(
                 phaseOfLogging = PHASE.NOT_STARTED,
                 currentPassword = "",
-                currentUser = ""
+                currentUser = "",
+                currentBaseUrl = "http://smarthomeproject.mybluemix.net/api/"
         ),
         sensorState = SensorState(
                 phase = PHASE.NOT_STARTED,
