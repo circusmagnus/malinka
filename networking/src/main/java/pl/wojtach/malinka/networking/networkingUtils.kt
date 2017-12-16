@@ -22,5 +22,6 @@ fun List<WsSensor>.convertToEntity() = this.map {
             lastDate = it.lastDate,
             lastValue = it.lastValue,
             hasError = false,
-            shouldSync = false)
+            shouldSync = false,
+            valueChanges = kotlin.collections.emptyList())
 }

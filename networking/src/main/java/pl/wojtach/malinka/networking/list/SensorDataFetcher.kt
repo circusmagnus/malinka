@@ -59,8 +59,8 @@ internal class SensorDataFetcherRetrofit(val stateMachine: StateMachine<State>) 
 
         sensorData
                 .zipWith(alertsData,
-                        BiFunction { wsSensors: List<WsSensor>, wsAlerts: List<WsAlert> -> signalSensorsLoaded(wsSensors, wsAlerts) }
-                )
+                        BiFunction { wsSensors: List<WsSensor>, wsAlerts: List<WsAlert> -> Pair(wsSensors, wsAlerts) }
+                ).subscribe({ sensorsAlertsPair -> signalSensorsLoaded(sensorsAlertsPair.first, sensorsAlertsPair.second) }, { signalError(it) })
     }
 
     private fun signalError(it: Throwable) {

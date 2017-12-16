@@ -19,6 +19,7 @@ class SensorViewModel(stateMachine: StateMachine<State>, val id: String, val typ
     val name = ObservableField<String>()
     val value = ObservableField<String>()
     val date = ObservableField<String>()
+    val recentChanges = ObservableField<String>()
 
     init {
         render(stateMachine.getState())
@@ -32,5 +33,8 @@ class SensorViewModel(stateMachine: StateMachine<State>, val id: String, val typ
         name.set(sourceSensor.name)
         value.set(sourceSensor.lastValue)
         date.set(sourceSensor.lastDate)
+        sourceSensor.valueChanges.takeUnless { it.isEmpty() }
+                ?.let { it.reduce { acc: String, s: String -> "$acc \n \n$s" } }
+                .run { recentChanges.set(this) }
     }
 }

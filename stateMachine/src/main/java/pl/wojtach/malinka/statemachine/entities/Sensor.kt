@@ -14,7 +14,8 @@ data class Sensor(
         val lastValue: String,
         val lastDate: String,
         val hasError: Boolean,
-        val shouldSync: Boolean
+        val shouldSync: Boolean,
+        val valueChanges: List<String>
 ) : Parcelable {
     companion object {
         @JvmField val CREATOR: Parcelable.Creator<Sensor> = object : Parcelable.Creator<Sensor> {
@@ -31,7 +32,8 @@ data class Sensor(
             source.readString(),
             source.readString(),
             1 == source.readInt(),
-            1 == source.readInt()
+            1 == source.readInt(),
+            ArrayList<String>().apply { source.readList(this, String::class.java.classLoader) }
     )
 
     override fun describeContents() = 0
@@ -45,6 +47,7 @@ data class Sensor(
         dest.writeString(lastDate)
         dest.writeInt((if (hasError) 1 else 0))
         dest.writeInt((if (shouldSync) 1 else 0))
+        dest.writeList(valueChanges)
     }
 }
 

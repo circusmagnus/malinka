@@ -50,4 +50,23 @@ class LoginSuccesActionTest {
 
     }
 
+    @Test
+    fun transformState_correctlyTranformsInitialState_whenSomeAlertsMatchSensors() {
+        val loginSuccesAction = LoginSuccesAction(sensors = sensors, alerts = alerts)
+        val result = loginSuccesAction.transformState(createInitialState())
+
+        result shouldEqual createInitialState().copy(
+                loginState = createInitialState().loginState.copy(phaseOfLogging = PHASE.FINISHED),
+                sensorState = createInitialState().sensorState.copy(
+                        phase = PHASE.FINISHED,
+                        sensors = sensors.convertToEntity().map { sensor ->
+                            alerts.filter { alert -> sensor.mac == alert.mac && sensor.type == alert.type }
+                                    .let { sensor.copy(valueChanges = it.map { it.date }) }
+                        }
+
+                )
+        )
+
+    }
+
 }
