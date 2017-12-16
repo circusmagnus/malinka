@@ -1,12 +1,14 @@
 package pl.wojtach.malinka.networking.list
 
 import io.reactivex.Single
+import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import pl.wojtach.malinka.networking.*
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.PHASE
 import pl.wojtach.malinka.statemachine.states.State
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 /**
@@ -42,26 +44,43 @@ internal class SensorDataFetcherRetrofit(val stateMachine: StateMachine<State>) 
     }
 
     private fun fetchData() {
-        RetrofitProvider
+        val sensorData = RetrofitProvider
                 .getPasswordedRetrofit(stateMachine.getUser(), stateMachine.getPassword(), stateMachine.getBaseUrl())
-                .create(DataProvider::class.java)
+                .create(LastSensorStatusProvider::class.java)
                 .getSensors()
                 .subscribeOn(Schedulers.io())
-                .subscribe({ signalSensorsLoaded(it) }, { signalError(it) })
+//                .subscribe({ signalSensorsLoaded(it) }, { signalError(it) })
+
+        val alertsData = RetrofitProvider
+                .getPasswordedRetrofit(stateMachine.getUser(), stateMachine.getPassword(), stateMachine.getBaseUrl())
+                .create(RecentAlertsProvider::class.java)
+                .getAlerts(fromPeriod = 1)
+                .subscribeOn(Schedulers.io())
+
+        sensorData
+                .zipWith(alertsData,
+                        BiFunction { wsSensors: List<WsSensor>, wsAlerts: List<WsAlert> -> signalSensorsLoaded(wsSensors, wsAlerts) }
+                )
     }
 
     private fun signalError(it: Throwable) {
         stateMachine.dispatch(LoginErrorAction(it.toString()))
     }
 
-    private fun signalSensorsLoaded(sensors: List<WsSensor>) {
-        stateMachine.dispatch(LoginSuccesAction(sensors))
+    private fun signalSensorsLoaded(sensors: List<WsSensor>, alerts: List<WsAlert>) {
+        stateMachine.dispatch(LoginSuccesAction(sensors, alerts))
     }
 }
 
-interface DataProvider {
+interface LastSensorStatusProvider {
 
     @GET("lastStatus")
     fun getSensors(): Single<List<WsSensor>>
 
+}
+
+interface RecentAlertsProvider {
+
+    @GET("recentAlerts")
+    fun getAlerts(@Query("period") fromPeriod: Int): Single<List<WsAlert>>
 }
