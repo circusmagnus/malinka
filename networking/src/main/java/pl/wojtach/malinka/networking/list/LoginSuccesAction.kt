@@ -25,6 +25,6 @@ internal class LoginSuccesAction(val sensors: List<WsSensor>, val alerts: List<W
     }
 
     private fun doesBelongToSensor(sensor: Sensor, alert: WsAlert) =
-            sensor.mac == alert.mac
+            sensor.mac == alert.mac && sensor.type == 2
 }
 

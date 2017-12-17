@@ -34,7 +34,6 @@ class SensorViewModel(stateMachine: StateMachine<State>, val id: String, val typ
         value.set(sourceSensor.lastValue)
         date.set(sourceSensor.lastDate)
         sourceSensor.valueChanges.takeUnless { it.isEmpty() }
-                ?.map { it.replace("T", " \n") }
                 ?.let { it.reduce { acc: String, s: String -> "$acc \n \n$s" } }
                 .run { recentChanges.set(this) }
     }
