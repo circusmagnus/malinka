@@ -21,6 +21,7 @@ class SensorListViewModel(val stateMachine: StateMachine<State>, context: Contex
 
     private fun render(state: State) {
         state.sensorState.sensors
+                .sortedBy { it.name }
                 .map { SensorViewModel(stateMachine = stateMachine, id = it.mac, type = it.type) }
                 .toList()
                 .let { adapter.sensors = it }
