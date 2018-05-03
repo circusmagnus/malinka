@@ -15,7 +15,7 @@ internal class LoginViewModel(stateMachine: StateMachine<State>) {
     val isInProgress = ObservableField(View.INVISIBLE)
     val user = ObservableField("")
     val password = ObservableField("")
-    val errorMessage: ObservableField<String?> = ObservableField(null)
+    val errorMessage= ObservableField("")
     val errorMessageVisible = ObservableField(View.INVISIBLE)
     val baseUrl = ObservableField("")
 
