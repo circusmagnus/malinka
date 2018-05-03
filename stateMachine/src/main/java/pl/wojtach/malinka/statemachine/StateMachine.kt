@@ -25,6 +25,7 @@ internal class StateMachineImpl(initialState: State) : StateMachine<State> {
 
 
     private val publisher: Subject<State> = PublishSubject.create()
+    private val coroutineContext = newSingleThreadContext("Action Thread")
 
     private var currentState: State = initialState
         set(value) {
@@ -35,7 +36,7 @@ internal class StateMachineImpl(initialState: State) : StateMachine<State> {
 
 
     override fun dispatch(action: Action<State>) {
-        launch(newSingleThreadContext("Action Thread")) {
+        launch(coroutineContext) {
             currentState = action.transformState(currentState)
         }
     }
