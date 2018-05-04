@@ -44,4 +44,5 @@ dependencies {
     implementation project(':stateMachine')
     implementation project(':networking')
     implementation project(':cache')
+    implementation project(':camera')
 }
