@@ -27,4 +27,5 @@
     <string name="base_url_hint">Base url</string>
     <string name="login_menu_text">Login</string>
     <string name="last_changes">Ostatnie alarmy</string>
+    <string name="view_holder_sensor_see_camera">Zobacz</string>
 </resources>

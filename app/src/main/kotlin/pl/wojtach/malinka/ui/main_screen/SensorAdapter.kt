@@ -4,10 +4,14 @@ import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import pl.wojtach.camera.SeeCameraDispatcher
 import pl.wojtach.malinka.R
 import pl.wojtach.malinka.databinding.SensorViewholderBinding
 
-class SensorAdapter(sensors: List<SensorViewModel>, private val sensorClicksDispatcher: SensorClicksDispatcher) : RecyclerView.Adapter<SensorAdapter.SensorViewHolder>() {
+class SensorAdapter(
+        sensors: List<SensorViewModel>,
+        private val sensorClicksDispatcher: SensorClicksDispatcher,
+        private val seeCameraDispatcher: SeeCameraDispatcher) : RecyclerView.Adapter<SensorAdapter.SensorViewHolder>() {
 
     var sensors = sensors
         set(value) {
@@ -33,6 +37,7 @@ class SensorAdapter(sensors: List<SensorViewModel>, private val sensorClicksDisp
     override fun onBindViewHolder(holder: SensorViewHolder, position: Int) {
         holder.binding.model = sensors[position]
         holder.binding.sensorClicksDispatcher = sensorClicksDispatcher
+        holder.binding.seeCameraDispatcher = seeCameraDispatcher
 
     }
 

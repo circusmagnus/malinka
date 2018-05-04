@@ -12,6 +12,10 @@
             type="pl.wojtach.malinka.ui.main_screen.SensorClicksDispatcher" />
 
         <variable
+            name="see_camera_dispatcher"
+            type="pl.wojtach.camera.SeeCameraDispatcher" />
+
+        <variable
             name="data"
             type="String" />
     </data>
@@ -81,6 +85,13 @@
             android:layout_alignBaseline="@id/sensor_changes_descr"
             android:layout_below="@id/sensor_value"
             android:text="@{model.recentChanges}" />
+
+        <Button
+            style="@style/sensor_viewholder_left"
+            android:layout_below="@id/sensor_changes_descr"
+            android:text="@string/view_holder_sensor_see_camera"
+            android:visibility="@{model.isCamera ? View.VISIBLE : View.GONE}"
+            android:onClick="@{view -> see_camera_dispatcher.navigateToCamera(model.value)}"/>
 
     </RelativeLayout>
 

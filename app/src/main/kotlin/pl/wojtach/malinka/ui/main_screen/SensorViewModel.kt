@@ -20,6 +20,7 @@ class SensorViewModel(stateMachine: StateMachine<State>, val id: String, val typ
     val value = ObservableField<String>()
     val date = ObservableField<String>()
     val recentChanges = ObservableField<String>()
+    val isCamera = ObservableBoolean(false)
 
     init {
         render(stateMachine.getState())
@@ -36,5 +37,6 @@ class SensorViewModel(stateMachine: StateMachine<State>, val id: String, val typ
         sourceSensor.valueChanges.takeUnless { it.isEmpty() }
                 ?.let { it.reduce { acc: String, s: String -> "$acc \n \n$s" } }
                 .run { recentChanges.set(this) }
+        isCamera.set(sourceSensor.name == "kamera")
     }
 }

@@ -3,6 +3,7 @@ package pl.wojtach.malinka.ui.main_screen
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import io.reactivex.android.schedulers.AndroidSchedulers
+import pl.wojtach.camera.SeeCameraDispatcher
 import pl.wojtach.malinka.statemachine.StateMachine
 import pl.wojtach.malinka.statemachine.states.State
 
@@ -11,7 +12,7 @@ import pl.wojtach.malinka.statemachine.states.State
  */
 class SensorListViewModel(val stateMachine: StateMachine<State>, context: Context) {
 
-    var adapter = SensorAdapter(emptyList(), SensorClicksDispatcher.getInstance(stateMachine))
+    var adapter = SensorAdapter(emptyList(), SensorClicksDispatcher.getInstance(stateMachine), SeeCameraDispatcher(context))
     val layoutManager = LinearLayoutManager(context)
 
     init {
