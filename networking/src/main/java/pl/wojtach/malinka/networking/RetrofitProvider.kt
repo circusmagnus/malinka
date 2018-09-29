@@ -37,9 +37,9 @@ internal object RetrofitProvider {
 
     private fun provideClient(loginData: LoginData = LoginData("", "")): OkHttpClient {
         return OkHttpClient.Builder()
-                .readTimeout(10, TimeUnit.SECONDS)
-                .connectTimeout(5, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS)
+            .readTimeout(20, TimeUnit.SECONDS)
+            .connectTimeout(10, TimeUnit.SECONDS)
+            .writeTimeout(20, TimeUnit.SECONDS)
                 .addInterceptor(createLoggingInterceptor())
                 .addInterceptor(createPasswordInterceptor(loginData))
                 .build()
