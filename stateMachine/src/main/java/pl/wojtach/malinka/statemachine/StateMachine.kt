@@ -4,8 +4,6 @@ import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.newSingleThreadContext
 import pl.wojtach.malinka.statemachine.states.State
 
 /**
@@ -25,7 +23,7 @@ internal class StateMachineImpl(initialState: State) : StateMachine<State> {
 
 
     private val publisher: Subject<State> = PublishSubject.create()
-    private val coroutineContext = newSingleThreadContext("Action Thread")
+//    private val coroutineContext = newSingleThreadContext("Action Thread")
 
     private var currentState: State = initialState
         set(value) {
@@ -36,9 +34,7 @@ internal class StateMachineImpl(initialState: State) : StateMachine<State> {
 
 
     override fun dispatch(action: Action<State>) {
-        launch(coroutineContext) {
             currentState = action.transformState(currentState)
-        }
     }
 
     override fun getState(): State = currentState

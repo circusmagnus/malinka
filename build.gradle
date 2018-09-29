@@ -9,6 +9,9 @@ buildscript {
     ext.minSdkVersion = 21
     ext.targetSdkVersion = 26
     ext.kluentVersion = '1.36'
+    ext.rxjava = '2.2.2'
+    ext.rxjavaAndroid = '2.1.0'
+
 
     repositories {
         jcenter()
