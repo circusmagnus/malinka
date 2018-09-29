@@ -29,19 +29,11 @@ internal class LoginSuccesAction(val sensors: List<WsSensor>, val alerts: List<W
         .filter { alert -> doesBelongToSensor(sensor, alert) }
         .let { alerts -> sensor.copy(valueChanges = getDatesAndSort(alerts)) }
 
-    private fun getDatesAndSort(alerts: List<WsAlert>) =
-        alerts.asSequence().map { it.date }.sortedByDescending { it }.toList()
+    private fun getDatesAndSort(alerts: List<WsAlert>): List<String> =
+        alerts.asSequence().mapNotNull { it.date }.sortedByDescending { it }.toList()
 
-//        sensors
-//        .convertToEntity()
-//        .map { sensor ->
-//            alerts.filter { alert -> doesBelongToSensor(sensor, alert) }
-//                .let { alert ->
-//                    sensor.copy(valueChanges = alert.asSequence().map { it.date }.sortedByDescending { it }.toList())
-//                }
-//        }
 
     private fun doesBelongToSensor(sensor: Sensor, alert: WsAlert) =
-        sensor.mac == alert.mac && sensor.type == 2
+        sensor.mac == alert.mac && sensor.type == alert.type
 }
 
