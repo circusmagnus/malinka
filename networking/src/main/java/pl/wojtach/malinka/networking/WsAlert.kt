@@ -7,6 +7,6 @@ import com.google.gson.annotations.SerializedName
  */
 data class WsAlert(
         @SerializedName("sensormac") var mac: String?,
-        @SerializedName("sensorType") var type: Int?,
+        @SerializedName("sensortype") var type: Int?,
         var date: String?
 )

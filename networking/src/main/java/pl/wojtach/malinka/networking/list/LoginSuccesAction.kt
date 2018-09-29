@@ -27,10 +27,10 @@ internal class LoginSuccesAction(val sensors: List<WsSensor>, val alerts: List<W
 
     private fun addAlertsToSensor(sensor: Sensor): Sensor = alerts
         .filter { alert -> doesBelongToSensor(sensor, alert) }
-        .let { alerts -> sensor.copy(valueChanges = getDatesAndSort(alerts)) }
+        .let { alerts -> sensor.copy(valueChanges = getDatesAndSort(alerts).toList()) }
 
-    private fun getDatesAndSort(alerts: List<WsAlert>): List<String> =
-        alerts.asSequence().mapNotNull { it.date }.sortedByDescending { it }.toList()
+    private fun getDatesAndSort(alerts: List<WsAlert>) =
+        alerts.asSequence().mapNotNull { it.date }.sortedByDescending { it }
 
 
     private fun doesBelongToSensor(sensor: Sensor, alert: WsAlert) =
