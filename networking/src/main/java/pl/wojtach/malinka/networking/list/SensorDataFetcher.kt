@@ -81,6 +81,6 @@ interface LastSensorStatusProvider {
 
 interface RecentAlertsProvider {
 
-    @GET("recentAlerts")
+    @GET("lastAlerts")
     fun getAlerts(@Query("period") fromPeriod: Int): Single<List<WsAlert>>
 }
